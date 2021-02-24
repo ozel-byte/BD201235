@@ -1,7 +1,7 @@
 # BD201235
 Proyecto-Base-de-datos-corte2-veterinaria
 
-###INTEGRANTES
+### INTEGRANTES
 
 
 1. Magin guillermo albores lopez
