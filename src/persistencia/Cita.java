@@ -2,7 +2,7 @@ package persistencia;
 
 import java.io.Serializable;
 
-public class Cita {
+public class Cita implements Serializable {
 
     private int idcita;
     private String fecha;
