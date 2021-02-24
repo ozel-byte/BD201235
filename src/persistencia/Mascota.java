@@ -8,7 +8,9 @@ public class Mascota implements Serializable {
     private int iddueno;
     private int idtipo;
 
-    public Mascota (){}
+    public Mascota (){
+
+    }
 
     public Mascota (int idmascota, String nombre, int iddueno, int idtipo){
 
