@@ -7,6 +7,7 @@ public class Mascota implements Serializable {
     private String nombre;
     private int iddueno;
     private int idtipo;
+    private TipoMascota tm;
 
     public Mascota (){}
 
