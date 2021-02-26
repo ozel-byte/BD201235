@@ -10,12 +10,6 @@
         <property name="idmascota" column="idmascota"/>
         <property name="idservicio" column="idservicio"/>
 
-        <bag name="mascota" table="mascota" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idmascota" not-null="true"/>
-            </key>
-            <many-to-one class="Mascota"/>
-        </bag>
 
     </class>
 </hibernate-mapping>

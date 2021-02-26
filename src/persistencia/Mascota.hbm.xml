@@ -7,20 +7,11 @@
         </id>
 
         <property name="nombre" column="nombre"/>
+        <property name="iddueno" column="idduenoM"/>
+
         <many-to-one name="tipoMascota" class="TipoMascota" fetch="select">
             <column name="idtipoM" not-null="true"/>
         </many-to-one>
-
-        <many-to-one name="dueno" class="Dueno" fetch="select">
-            <column name="idduenoM" not-null="true"/>
-        </many-to-one>
-        
-        <bag name="cita" table="cita" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idmascota" not-null="true"/>
-            </key>
-            <one-to-many class="Cita"/>
-        </bag>
 
     </class>
 </hibernate-mapping>

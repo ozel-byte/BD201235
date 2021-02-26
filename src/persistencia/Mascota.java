@@ -11,6 +11,8 @@ public class Mascota implements Serializable {
     private TipoMascota tipoMascota;
     private Dueno dueno;
     private List<Cita> citaList;
+    //lista de citas
+
     public Mascota (){
 
     }
