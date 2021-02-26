@@ -33,7 +33,7 @@ public class MascotaDAO {
         List mascota = session.createQuery("from Mascota").list();
         for (Iterator iterator = mascota.iterator(); iterator.hasNext();){
             Mascota dao = (Mascota) iterator.next();
-            System.out.println( dao.getNombre()+" " + dao.getIddueno()+ " "+dao.getIdtipo());
+            System.out.println( dao.getNombre()+" " + dao.getIddueno()+ " "+dao.getTipoMascota().getIdtipo());
         }
     }
 

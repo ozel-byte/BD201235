@@ -7,7 +7,6 @@ public class Mascota implements Serializable {
     private int idmascota;
     private String nombre;
     private int iddueno;
-    private int idtipo;
     private TipoMascota tipoMascota;
     private Dueno dueno;
     private List<Cita> citaList;
@@ -17,12 +16,10 @@ public class Mascota implements Serializable {
 
     }
 
-    public Mascota (int idmascota, String nombre, int iddueno, int idtipo){
-
+    public Mascota (int idmascota, String nombre, int iddueno){
         this.idmascota = idmascota;
         this.nombre = nombre;
         this.iddueno = iddueno;
-        this.idtipo = idtipo;
 
     }
 
@@ -48,14 +45,6 @@ public class Mascota implements Serializable {
 
     public void setIddueno(int iddueno) {
         this.iddueno = iddueno;
-    }
-
-    public int getIdtipo() {
-        return idtipo;
-    }
-
-    public void setIdtipo(int idtipo) {
-        this.idtipo = idtipo;
     }
 
     public TipoMascota getTipoMascota() {
