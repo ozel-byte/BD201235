@@ -1,6 +1,7 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Dueno implements Serializable
 {
@@ -10,6 +11,18 @@ public class Dueno implements Serializable
     private String direccion;
     private String telefono;
     private String correo;
+    private List<Mascota> mascotaList;
+
+    public Dueno (){}
+
+    public Dueno (int idDueno, String nombre, String direccion, String telefono, String correo)
+    {
+        this.idDueno = idDueno;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.telefono = correo;
+    }
 
     public int getIdDueno() {
         return idDueno;
@@ -51,14 +64,11 @@ public class Dueno implements Serializable
         this.correo = correo;
     }
 
-    public Dueno (){}
+    public List<Mascota> getMascotaList() {
+        return mascotaList;
+    }
 
-    public Dueno (int idDueno, String nombre, String direccion, String telefono, String correo)
-    {
-        this.idDueno = idDueno;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.telefono = correo;
+    public void setMascotaList(List<Mascota> mascotaList) {
+        this.mascotaList = mascotaList;
     }
 }

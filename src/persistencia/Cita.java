@@ -8,6 +8,7 @@ public class Cita implements Serializable {
     private String fecha;
     private int idmascota;
     private int idservicio;
+    private Mascota mascotaC;
 
     public Cita (){}
 
@@ -52,4 +53,11 @@ public class Cita implements Serializable {
         this.idservicio = idservicio;
     }
 
+    public Mascota getMascotaC() {
+        return mascotaC;
+    }
+
+    public void setMascotaC(Mascota mascotaC) {
+        this.mascotaC = mascotaC;
+    }
 }

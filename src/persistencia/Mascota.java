@@ -1,14 +1,16 @@
 package persistencia;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Mascota implements Serializable {
     private int idmascota;
     private String nombre;
     private int iddueno;
     private int idtipo;
-    private TipoMascota tm;
-
+    private TipoMascota tipoMascota;
+    private Dueno dueno;
+    private List<Cita> citaList;
     public Mascota (){
 
     }
@@ -52,5 +54,29 @@ public class Mascota implements Serializable {
 
     public void setIdtipo(int idtipo) {
         this.idtipo = idtipo;
+    }
+
+    public TipoMascota getTipoMascota() {
+        return tipoMascota;
+    }
+
+    public void setTipoMascota(TipoMascota tipoMascota) {
+        this.tipoMascota = tipoMascota;
+    }
+
+    public Dueno getDueno() {
+        return dueno;
+    }
+
+    public void setDueno(Dueno dueno) {
+        this.dueno = dueno;
+    }
+
+    public List<Cita> getCitaList() {
+        return citaList;
+    }
+
+    public void setCitaList(List<Cita> citaList) {
+        this.citaList = citaList;
     }
 }
