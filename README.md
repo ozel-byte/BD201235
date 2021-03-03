@@ -5,6 +5,6 @@ Proyecto-Base-de-datos-corte2-veterinaria
 
 
 1. Magin guillermo albores lopez
-1. kevin nuricumbo gutierrez
-1. kevin hernandez alvarado
-1. ozel vazquez lopez
+1. Kevin Omar Nuricumbo Gutiérrez
+1. Kevin Hernandez Alvarado
+1. Ozel Vazquez Lopez
