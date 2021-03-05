@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `bd201235` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bd201235`;
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: bd201235
+-- Host: localhost    Database: bd201235
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	8.0.23-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,10 +23,10 @@ DROP TABLE IF EXISTS `cita`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cita` (
-  `idcita` int(11) NOT NULL,
+  `idcita` int NOT NULL,
   `fecha` varchar(45) NOT NULL,
-  `idmascota` int(11) NOT NULL,
-  `idservicio` int(11) NOT NULL,
+  `idmascota` int NOT NULL,
+  `idservicio` int NOT NULL,
   PRIMARY KEY (`idcita`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -50,7 +48,7 @@ DROP TABLE IF EXISTS `duenom`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `duenom` (
-  `idduenoM` int(11) NOT NULL AUTO_INCREMENT,
+  `idduenoM` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `telefono` varchar(45) NOT NULL,
@@ -77,10 +75,10 @@ DROP TABLE IF EXISTS `mascota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mascota` (
-  `idmascota` int(11) NOT NULL AUTO_INCREMENT,
+  `idmascota` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
-  `idduenoM` int(11) NOT NULL,
-  `idtipoM` int(11) NOT NULL,
+  `idduenoM` int NOT NULL,
+  `idtipoM` int NOT NULL,
   PRIMARY KEY (`idmascota`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -103,8 +101,8 @@ DROP TABLE IF EXISTS `medicamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medicamento` (
-  `idmedicamento` int(11) NOT NULL,
-  `codigo` int(11) NOT NULL,
+  `idmedicamento` int NOT NULL,
+  `codigo` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `sustancia` varchar(45) NOT NULL,
   `fecha_cad` varchar(45) NOT NULL,
@@ -129,9 +127,9 @@ DROP TABLE IF EXISTS `servicio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `servicio` (
-  `idservicio` int(11) NOT NULL,
+  `idservicio` int NOT NULL,
   `tipo` varchar(45) NOT NULL,
-  `costo` int(11) NOT NULL,
+  `costo` int NOT NULL,
   PRIMARY KEY (`idservicio`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -153,7 +151,7 @@ DROP TABLE IF EXISTS `tipom`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipom` (
-  `idtipoM` int(11) NOT NULL AUTO_INCREMENT,
+  `idtipoM` int NOT NULL AUTO_INCREMENT,
   `especie` varchar(45) NOT NULL,
   `sexo` varchar(45) NOT NULL,
   `raza` varchar(45) NOT NULL,
@@ -170,6 +168,32 @@ LOCK TABLES `tipom` WRITE;
 INSERT INTO `tipom` VALUES (1,'Perro','Hembra','husky'),(2,'Gato','Macho','Persa'),(3,'Serpiente','Hembra','Cascabel'),(4,'Murcielago','Macho','negro');
 /*!40000 ALTER TABLE `tipom` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `idusuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (2,'Ozel','123456','false'),(3,'kevin','123456','false');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -180,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-26 10:53:28
+-- Dump completed on 2021-03-05 11:45:54
