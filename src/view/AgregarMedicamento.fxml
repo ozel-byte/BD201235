@@ -17,7 +17,17 @@
             <Image url="@../../imagenes/AddMed.jpeg" />
          </image>
       </ImageView>
-      <Text fill="#63636b" layoutX="450.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Medicamento">
+      <ImageView fx:id="imgModificar" fitHeight="600.0" fitWidth="865.0" layoutX="-70.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../imagenes/modificarMed.jpeg" />
+         </image>
+      </ImageView>
+      <Text fx:id="addMedicamento" fill="#63636b" layoutX="460.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Medicamento">
+         <font>
+            <Font name="Segoe UI Bold" size="30.0" />
+         </font>
+      </Text>
+      <Text fx:id="updateMed" fill="#63636b" layoutX="460.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modificar Medicamento" visible="false">
          <font>
             <Font name="Segoe UI Bold" size="30.0" />
          </font>
@@ -47,6 +57,11 @@
       <TextField fx:id="codigo" layoutX="676.0" layoutY="203.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-radius: 10; -fx-border-color: #707070; -fx-border-radius: 10;" />
       <TextField fx:id="sustancia" layoutX="450.0" layoutY="301.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-radius: 10; -fx-border-color: #707070; -fx-border-radius: 10;" />
       <Button fx:id="btAgregar" layoutX="481.0" layoutY="423.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="351.0" style="-fx-background-color: #0C75FF; -fx-background-radius: 10;" text="Agregar" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btModificar" layoutX="481.0" layoutY="423.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="351.0" style="-fx-background-color: #0C75FF; -fx-background-radius: 10;" text="Modificar" textFill="WHITE" visible="false">
          <font>
             <Font name="Segoe UI Bold" size="20.0" />
          </font>
