@@ -10,6 +10,14 @@ public class TipoMascota implements Serializable {
     private String raza;
     private List<Mascota> mascota;
 
+    public TipoMascota(){}
+
+    public TipoMascota(String especie, String sexo, String raza){
+        this.especie = especie;
+        this.sexo = sexo;
+        this.raza = raza;
+    }
+
     public int getIdtipo() {
         return idtipo;
     }
