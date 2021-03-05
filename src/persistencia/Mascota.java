@@ -6,7 +6,6 @@ import java.util.List;
 public class Mascota implements Serializable {
     private int idmascota;
     private String nombre;
-    private int iddueno;
     private TipoMascota tipoMascota;
     private Dueno dueno;
     private List<Cita> citaList;
@@ -16,10 +15,11 @@ public class Mascota implements Serializable {
 
     }
 
-    public Mascota (int idmascota, String nombre, int iddueno){
-        this.idmascota = idmascota;
+    public Mascota ( String nombre){
+
+        //this.idmascota = idmascota;
         this.nombre = nombre;
-        this.iddueno = iddueno;
+        //this.idtipo = idtipo;
 
     }
 
@@ -37,14 +37,6 @@ public class Mascota implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getIddueno() {
-        return iddueno;
-    }
-
-    public void setIddueno(int iddueno) {
-        this.iddueno = iddueno;
     }
 
     public TipoMascota getTipoMascota() {
@@ -70,4 +62,6 @@ public class Mascota implements Serializable {
     public void setCitaList(List<Cita> citaList) {
         this.citaList = citaList;
     }
+
+
 }
