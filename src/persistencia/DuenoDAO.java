@@ -30,7 +30,7 @@ public class DuenoDAO {
 
     public void getDueno(){
         Session session = factory.openSession();
-        List dueno = session.createQuery("from duenom").list();
+        List dueno = session.createQuery("from Dueno").list();
         for (Iterator iterator = dueno.iterator(); iterator.hasNext();){
             Dueno dao = (Dueno) iterator.next();
             System.out.println( dao.getNombre()+ "\t" + dao.getCorreo()+"\t" + dao.getDireccion());

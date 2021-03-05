@@ -55,7 +55,7 @@ public class TipoMascotaDAO {
 
     public void getTipo2(){
         Session session = factory.openSession();
-        Criteria cri = session.createCriteria(Usuario.class);
+        Criteria cri = session.createCriteria(TipoMascota.class);
         List tipomascota = cri.list();
         for (Iterator iterator = tipomascota.iterator(); iterator.hasNext();) {
             TipoMascota dao = (TipoMascota) iterator.next();
