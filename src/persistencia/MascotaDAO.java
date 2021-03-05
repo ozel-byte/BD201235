@@ -77,7 +77,7 @@ public class MascotaDAO {
         tp.setSexo("Macho");
         session.save(tp);*/
 
-        Mascota mascota = new Mascota("Pedro");
+        Mascota mascota = new Mascota("Chop");
         mascota.setTipoMascota(tipo);
         mascota.setDueno(dueno);
         session.save(mascota);
