@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Login">
+   <children>
+      <TextField layoutX="353.0" layoutY="278.0" prefHeight="43.0" prefWidth="193.0" style="-fx-background-radius: 10;" />
+      <PasswordField layoutX="353.0" layoutY="365.0" prefHeight="43.0" prefWidth="194.0" style="-fx-background-radius: 10;" />
+      <Text fill="#63636b" layoutX="353.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#63636b" layoutX="353.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Button layoutX="292.0" layoutY="458.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="314.0" style="-fx-background-color: #7F64FF; -fx-background-radius: 10;" text="Iniciar Sesion" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="230.0" fitWidth="193.0" layoutX="353.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagenes/Logo_v3.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

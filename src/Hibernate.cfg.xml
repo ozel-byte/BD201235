@@ -17,6 +17,12 @@
 
         <mapping resource="persistencia/Mascota.hbm.xml" />
         <mapping resource="persistencia/TipoMascota.hbm.xml" />
+        <mapping resource="persistencia/Dueno.hbm.xml" />
+        <mapping resource="persistencia/CitaMascota.hbm.xml" />
+
+        <!-- <mapping resource="persistencia/Servicio.hbm.xml" />
+        <mapping resource="persistencia/Medicamento.hbm.xml" />
+        <mapping resource="persistencia/MascotaD.hbm.xml" /> -->
 
     </session-factory>
 </hibernate-configuration>
