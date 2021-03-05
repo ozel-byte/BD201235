@@ -18,9 +18,9 @@ public class MascotaDAO {
 
     public MascotaDAO(){
         try {
-            Configuration configuration = new Configuration();
+            Configuration configuration = new Configuration().configure("Hibernate.cfg.xml");
             System.err.println("Leyendo configuracion.");
-            configuration.configure();
+
             serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             factory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Throwable ex) {

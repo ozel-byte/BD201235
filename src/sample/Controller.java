@@ -10,8 +10,8 @@ public class Controller {
 
     @FXML
     private void initialize(){
-        //MascotaDAO m = new MascotaDAO();
-        //m.getMascota();
+        MascotaDAO m = new MascotaDAO();
+        m.getMascota();
 
         /*DuenoDAO d = new DuenoDAO();
         d.getDueno();
