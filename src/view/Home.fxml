@@ -6,12 +6,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerHome">
    <children>
-      <AnchorPane layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
+      <AnchorPane fx:id="anchorHome" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
          <children>
             <AnchorPane layoutX="460.0" prefHeight="102.0" prefWidth="218.0" style="-fx-background-color: #232323; -fx-background-radius: 15;">
                <children>
@@ -48,7 +49,105 @@
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Text>
-            <ListView fx:id="viewDatos" layoutX="14.0" layoutY="102.0" prefHeight="303.0" prefWidth="402.0" style="-fx-background-color: #FFFFFF;" />
+            <ListView fx:id="listHome" layoutX="14.0" layoutY="102.0" prefHeight="303.0" prefWidth="402.0" style="-fx-background-color: #FFFFFF;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorMedi" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medicamentos">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="28.0" />
+               </font>
+            </Text>
+            <Text layoutX="93.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <ListView fx:id="listMedicamentos" layoutX="62.0" layoutY="101.0" prefHeight="303.0" prefWidth="558.0" style="-fx-background-color: #FFFFFF;" />
+            <Text layoutX="213.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="355.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sustancia">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="495.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha-Cad">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Line endX="-6.5" layoutX="115.0" layoutY="57.0" startX="-100.0" stroke="#ff9204" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="agregarMed" layoutX="617.0" layoutY="541.0" mnemonicParsing="false" onAction="#agregaMedi" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #56E2F8; -fx-background-radius: 10;" text="Agregar Medicamento" textFill="WHITE" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <AnchorPane fx:id="anchorMascota" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mascotas">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="28.0" />
+               </font>
+            </Text>
+            <Text layoutX="93.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <ListView fx:id="listMascota" layoutX="93.0" layoutY="104.0" prefHeight="303.0" prefWidth="402.0" style="-fx-background-color: #FFFFFF;" />
+            <Text layoutX="207.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especie">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="324.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Raza">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="408.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dueño">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Line endX="-6.5" layoutX="115.0" layoutY="57.0" startX="-100.0" stroke="#ff9204" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorDuenos" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
+         <children>
+            <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dueños">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="28.0" />
+               </font>
+            </Text>
+            <Text layoutX="93.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <ListView fx:id="listDuenos" layoutX="93.0" layoutY="104.0" prefHeight="303.0" prefWidth="469.0" style="-fx-background-color: #FFFFFF;" />
+            <Text layoutX="217.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Direccion">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="355.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefono">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="495.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <Line endX="-6.5" layoutX="115.0" layoutY="57.0" startX="-100.0" stroke="#ff9204" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="12.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
@@ -96,5 +195,25 @@
             <Image url="@../../imagenes/usuari.png" />
          </image>
       </ImageView>
+      <Button fx:id="btHome" layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#btHome" style="-fx-background-color: none; -fx-background-radius: 10;" text="Home" textFill="#848484">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btMascota" layoutX="13.0" layoutY="267.0" mnemonicParsing="false" onAction="#btMascota" style="-fx-background-color: none; -fx-background-radius: 10;" text="Mascotas" textFill="#848484">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btDueno" layoutX="15.0" layoutY="318.0" mnemonicParsing="false" onAction="#btDueno" style="-fx-background-color: none; -fx-background-radius: 10;" text="Dueños" textFill="#848484">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btMedi" layoutX="11.0" layoutY="371.0" mnemonicParsing="false" onAction="#btMedicamento" style="-fx-background-color: none; -fx-background-radius: 10;" text="Medicamentos" textFill="#848484">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

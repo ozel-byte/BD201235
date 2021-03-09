@@ -13,8 +13,7 @@ public class Medicamento implements Serializable {
     public  Medicamento(){
 
     }
-    public Medicamento(Integer idmedicamento,Integer codigo, String nombre, String sustancia, String fecha_cad){
-        this.idmedicamento=idmedicamento;
+    public Medicamento(String nombre, Integer codigo, String sustancia, String fecha_cad){
         this.codigo = codigo;
         this.nombre=nombre;
         this.sustancia = sustancia;
