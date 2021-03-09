@@ -181,8 +181,9 @@ CREATE TABLE `usuario` (
   `nombre` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `status` varchar(45) DEFAULT NULL,
+  `rol` varchar(45) NOT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,7 +192,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (2,'Ozel','123456','false'),(3,'kevin','123456','false');
+INSERT INTO `usuario` VALUES (4,'ozel','123456','false','admin'),(5,'kevin','123456','false','user');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -204,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-05 11:45:54
+-- Dump completed on 2021-03-09 13:10:17
