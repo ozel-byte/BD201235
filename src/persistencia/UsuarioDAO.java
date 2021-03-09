@@ -1,5 +1,8 @@
 package persistencia;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Criterion;
@@ -68,5 +71,18 @@ public class UsuarioDAO {
 
         return null;
 
+    }
+
+    public ObservableList<Usuario> getUsuarios(){
+        ObservableList<Usuario> users = FXCollections.observableArrayList();
+        Session s = factory.openSession();
+        Criteria c = s.createCriteria(Usuario.class);
+        List results = c.list();
+        for(int i=0; i<results.size(); i++){
+            Usuario user = (Usuario)results.get(i);
+            users.add(user);
+        }
+
+        return users;
     }
 }
