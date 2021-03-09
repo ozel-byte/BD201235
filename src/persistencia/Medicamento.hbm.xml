@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="persistencia">
+    <class name="Medicamento" table="medicamento">
+        <id name="idmedicamento" column="idmedicamento" type="java.lang.Integer" unsaved-value="null" >
+            <generator class="native"> </generator>
+        </id>
+
+        <property name="nombre" column="nombre"/>
+        <property name="codigo" column="codigo"/>
+        <property name="sustancia" column="sustancia"/>
+        <property name="fecha_Cad" column="fecha_cad"/>
+
+    </class>
+</hibernate-mapping>
