@@ -1,13 +1,15 @@
 package persistencia;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.internal.SessionFactoryRegistry;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+
+import java.util.List;
 
 public class UsuarioDAO {
 
@@ -18,7 +20,7 @@ public class UsuarioDAO {
         try {
             Configuration configuration = new Configuration();
             System.err.println("Leyendo configuracion.");
-            configuration.configure();
+            configuration.configure("Hibernate.cfg.xml");
             serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             factory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Throwable ex) {
@@ -27,14 +29,14 @@ public class UsuarioDAO {
         }
     }
 
-    public Integer addUsuario(String nombre, String password, String status){
+    public Integer addUsuario(String nombre, String password, String status,String rol){
         Session session = factory.openSession();
         Transaction tx = null;
         Integer userID = null;
 
         try {
             tx = session.beginTransaction();
-            Usuario user = new Usuario(nombre, password, status);
+            Usuario user = new Usuario(nombre, password, status,rol);
             userID = (Integer) session.save(user);
             tx.commit();
         } catch (HibernateException e) {
@@ -50,5 +52,21 @@ public class UsuarioDAO {
     }
     public void updateUsuario(){}
 
-    public void getUusario(){}
+    public Usuario getUsuario(String nombre,String password){
+        Session s = factory.openSession();
+        Criteria c = s.createCriteria(Usuario.class);
+        Criterion nom = Restrictions.eq("nombre",nombre);
+        Criterion pass = Restrictions.eq("password", password);
+        LogicalExpression andExp = Restrictions.and(nom,pass);
+        c.add(andExp);
+        List results = c.list();
+        for(int i=0; i<results.size(); i++){
+            Usuario user = (Usuario) results.get(i);
+            System.out.println(user.getNombre()+" "+user.getPassword()+" "+user.getRol()+" "+user.getStatus());
+            return user;
+        }
+
+        return null;
+
+    }
 }

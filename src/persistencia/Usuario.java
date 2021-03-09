@@ -7,13 +7,17 @@ public class Usuario implements Serializable {
     private String nombre;
     private String password;
     private String status;
+    private String rol;
 
-    public Usuario (){}
+    public Usuario (){
 
-    public Usuario (String username, String password,String status){
+    }
+
+    public Usuario (String username, String password, String status, String rol){
         this.nombre = username;
         this.password = password;
         this.status=status;
+        this.rol=rol;
     }
 
     public int getId() {
@@ -46,5 +50,13 @@ public class Usuario implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }
