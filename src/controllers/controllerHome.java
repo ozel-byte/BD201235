@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import persistencia.Medicamento;
@@ -98,9 +99,11 @@ public class controllerHome {
     private Button btMedi;
 
     ObservableList<Medicamento> mediObservable = FXCollections.observableArrayList();
+    controllerHome h;
 
     @FXML
     private void initialize(){
+        h=this;
     }
 
     @FXML
@@ -143,16 +146,15 @@ public class controllerHome {
     @FXML
     private void addMedi(){
 
-        Medicamento m = new Medicamento();
-
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GestionMedicamentos.fxml"));
             Parent root = (Parent)loader.load();
             controllerGestionMedicamentos cgm = loader.getController();
-            //cgm.pasarDatosUsuario(m);
+            cgm.recibir(h);
 
             stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         }catch (Exception e){
             System.out.println(e);

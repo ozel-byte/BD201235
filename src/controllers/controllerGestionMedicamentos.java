@@ -52,6 +52,18 @@ public class controllerGestionMedicamentos {
     @FXML
     private Text addFail;
 
+    controllerHome home;
+
+    @FXML
+    private void initialize(){
+    }
+
+    @FXML
+    public void recibir(controllerHome h){
+        home = h;
+    }
+
+
     @FXML
     private void agregar(){
         imgAgregar.setVisible(true);
@@ -64,6 +76,7 @@ public class controllerGestionMedicamentos {
             DateTimeFormatter formatte = DateTimeFormatter.ofPattern("dd/LL/yy");
             MedicamentoDAO m = new MedicamentoDAO();
             m.agregar(nombre.getText(),Integer.parseInt(codigo.getText()), sustancia.getText(), fecha.getValue().format(formatte));
+            home.obeserbaleMedicamentos();
             addOk.setVisible(true);
 
         } else {
