@@ -24,7 +24,7 @@
                   </Text>
                   <ImageView fitHeight="66.0" fitWidth="67.0" layoutX="152.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../imagenes/calendario.png" />
+                        <Image url="@../imagenes/calendario.png" />
                      </image>
                   </ImageView>
                </children>
@@ -152,7 +152,7 @@
       </AnchorPane>
       <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="12.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/perrito_dx.png" />
+            <Image url="@../imagenes/perrito_dx.png" />
          </image>
       </ImageView>
       <Text fill="#8065ff" layoutX="86.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veterinaria">
@@ -177,22 +177,22 @@
       </Button>
       <ImageView fx:id="Home" fitHeight="30.0" fitWidth="30.0" layoutX="33.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/home.png" />
+            <Image url="@../imagenes/home.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pets" fitHeight="30.0" fitWidth="30.0" layoutX="31.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/pet.png" />
+            <Image url="@../imagenes/pet.png" />
          </image>
       </ImageView>
       <ImageView fx:id="medicamentos" fitHeight="37.0" fitWidth="48.0" layoutX="29.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/Med.png" />
+            <Image url="@../imagenes/Med.png" />
          </image>
       </ImageView>
       <ImageView fx:id="users" fitHeight="30.0" fitWidth="37.0" layoutX="32.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/usuari.png" />
+            <Image url="@../imagenes/usuari.png" />
          </image>
       </ImageView>
       <Button fx:id="btHome" layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#btHome" style="-fx-background-color: none; -fx-background-radius: 10;" text="Home" textFill="#848484">
