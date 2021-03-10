@@ -16,12 +16,6 @@
             <column name="idduenoM" not-null="true"/>
         </many-to-one>
 
-        <bag name="citaList" table="cita" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idcita" not-null="true"/>
-            </key>
-            <one-to-many class="Cita" />
-        </bag>
 
 
     </class>

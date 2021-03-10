@@ -10,6 +10,5 @@
         <property name="idmascota" column="idmascota"/>
         <property name="idservicio" column="idservicio"/>
 
-
     </class>
 </hibernate-mapping>
