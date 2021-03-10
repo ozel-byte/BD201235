@@ -18,7 +18,7 @@ public class DuenoDAO {
         try {
             Configuration configuration = new Configuration();
             System.err.println("Leyendo configuracion.");
-            configuration.configure();
+            configuration.configure("Hibernate.cfg.xml");
             serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             factory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Throwable ex) {
