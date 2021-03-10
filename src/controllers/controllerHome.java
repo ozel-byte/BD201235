@@ -6,18 +6,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import persistencia.Medicamento;
 import persistencia.MedicamentoDAO;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+
 
 public class controllerHome {
 
@@ -34,7 +35,22 @@ public class controllerHome {
     private AnchorPane anchorMedi;
 
     @FXML
-    private ListView<String> listMedicamentos;
+    private TableView<Medicamento> tableMed;
+
+    @FXML
+    private TableColumn<Medicamento, String> cNombre;
+
+    @FXML
+    private TableColumn<Medicamento, Integer> cCodigo;
+
+    @FXML
+    private TableColumn<Medicamento, String> cSustancia;
+
+    @FXML
+    private TableColumn<Medicamento, String> cFecha;
+
+    @FXML
+    private TableColumn<Medicamento, String> cBotones;
 
     @FXML
     private Button agregarMed;
@@ -81,26 +97,10 @@ public class controllerHome {
     @FXML
     private Button btMedi;
 
+    ObservableList<Medicamento> mediObservable = FXCollections.observableArrayList();
+
     @FXML
     private void initialize(){
-        ArrayList<String> p = new ArrayList<>();
-
-        MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
-        List<Medicamento> m = medicamentoDAO.getMedicamento();
-
-        for (Iterator iterator = m.iterator(); iterator.hasNext();) {
-            Medicamento dao = (Medicamento) iterator.next();
-            String p2 = dao.getNombre() + "     " + dao.getCodigo() + "     " + dao.getSustancia() + "     " + dao.getFecha_Cad();
-            p.add(p2);
-
-        }
-
-        //ObservableList<Medicamento> names = FXCollections.observableArrayList(m);
-        //listMedicamentos.setItems(names);
-
-        ObservableList<String> name = FXCollections.observableArrayList(p);
-        listMedicamentos.setItems(name);
-        //ListView<String> listView = new ListView<String>(name);
     }
 
     @FXML
@@ -132,6 +132,7 @@ public class controllerHome {
 
     @FXML
     private void btMedicamento(){
+        obeserbaleMedicamentos();
         anchorHome.setVisible(false);
         anchorMascota.setVisible(false);
         anchorDuenos.setVisible(false);
@@ -140,40 +141,76 @@ public class controllerHome {
     }
 
     @FXML
-    private void agregaMedi(){
+    private void addMedi(){
+
+        Medicamento m = new Medicamento();
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/GestionMedicamentos.fxml"));
-            //Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GestionMedicamentos.fxml"));
+            Parent root = (Parent)loader.load();
+            controllerGestionMedicamentos cgm = loader.getController();
+            //cgm.pasarDatosUsuario(m);
+
             stage.setScene(new Scene(root));
             stage.show();
-
         }catch (Exception e){
             System.out.println(e);
         }
     }
 
     @FXML
-    private void registrar(){
+    public void obeserbaleMedicamentos(){
+        MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+        mediObservable = medicamentoDAO.getMedicamento();
+        tableMed.setItems(mediObservable);
+        cNombre.setCellValueFactory(Celldata -> Celldata.getValue().nombreProperty());
+        cSustancia.setCellValueFactory(Celldata -> Celldata.getValue().sustanciaProperty());
+        cFecha.setCellValueFactory(Celldata -> Celldata.getValue().fecha_CadProperty());
+        cCodigo.setCellValueFactory(new PropertyValueFactory<Medicamento, Integer>("codigo"));
 
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Registros.fxml"));
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        Callback<TableColumn<Medicamento, String>, TableCell<Medicamento, String>> cellFactory = new Callback<TableColumn<Medicamento, String>, TableCell<Medicamento, String>>(){
+            @Override
+            public TableCell call(final TableColumn<Medicamento, String> param) {
+                final TableCell<Medicamento, String> cell = new TableCell<Medicamento, String>() {
 
+                    final Button btn = new Button("Editar");
+                    final Button btnEliminar = new Button("Eliminar");
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            btn.setOnAction(event -> {
+                                Medicamento user = getTableView().getItems().get(getIndex());
+                                System.out.println(user.getNombre()
+                                        + "   " + user.getIdmedicamento());
+                                //gestionMedi(2);
+
+                            });
+                            btnEliminar.setOnAction(event -> {
+                                Medicamento user = getTableView().getItems().get(getIndex());
+                                System.out.println(user.getNombre()
+                                        + "   " + user.getIdmedicamento());
+                                medicamentoDAO.deleteMedicamento(user.getIdmedicamento());
+                                obeserbaleMedicamentos();
+                            });
+                            HBox h = new HBox();
+                            h.setSpacing(15);
+
+                            h.getChildren().addAll(btn,btnEliminar);
+                            setGraphic(h);
+                            setText(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        cBotones.setCellFactory(cellFactory);
     }
-
-    @FXML
-    private void generarCita(){
-
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("GenerarCita.fxml"));
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-
-    }
-
 
 }

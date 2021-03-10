@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +14,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerHome">
    <children>
-      <AnchorPane fx:id="anchorHome" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
+      <AnchorPane fx:id="anchorHome" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
          <children>
             <AnchorPane layoutX="460.0" prefHeight="102.0" prefWidth="218.0" style="-fx-background-color: #232323; -fx-background-radius: 15;">
                <children>
@@ -52,43 +54,31 @@
             <ListView fx:id="listHome" layoutX="14.0" layoutY="102.0" prefHeight="303.0" prefWidth="402.0" style="-fx-background-color: #FFFFFF;" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorMedi" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
+      <AnchorPane fx:id="anchorMedi" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
          <children>
             <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medicamentos">
                <font>
                   <Font name="Arial Rounded MT Bold" size="28.0" />
                </font>
             </Text>
-            <Text layoutX="93.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <ListView fx:id="listMedicamentos" layoutX="62.0" layoutY="101.0" prefHeight="303.0" prefWidth="558.0" style="-fx-background-color: #FFFFFF;" />
-            <Text layoutX="213.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="355.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sustancia">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="495.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha-Cad">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
             <Line endX="-6.5" layoutX="115.0" layoutY="57.0" startX="-100.0" stroke="#ff9204" />
+            <TableView fx:id="tableMed" layoutX="12.0" layoutY="89.0" prefHeight="326.0" prefWidth="758.0">
+              <columns>
+                <TableColumn fx:id="cNombre" prefWidth="240.0000228881836" text="Nombre" />
+                <TableColumn fx:id="cCodigo" prefWidth="117.5999755859375" text="Codigo" />
+                  <TableColumn fx:id="cSustancia" minWidth="0.0" prefWidth="82.40005493164062" text="Sustancia" />
+                  <TableColumn fx:id="cFecha" prefWidth="157.5999755859375" text="Fecha de Caducidad" />
+                  <TableColumn fx:id="cBotones" prefWidth="153.60009765625" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
-      <Button fx:id="agregarMed" layoutX="617.0" layoutY="541.0" mnemonicParsing="false" onAction="#agregaMedi" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #56E2F8; -fx-background-radius: 10;" text="Agregar Medicamento" textFill="WHITE" visible="false">
+      <Button fx:id="agregarMed" layoutX="617.0" layoutY="541.0" mnemonicParsing="false" onAction="#addMedi" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #56E2F8; -fx-background-radius: 10;" text="Agregar Medicamento" textFill="WHITE" visible="false">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <AnchorPane fx:id="anchorMascota" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
+      <AnchorPane fx:id="anchorMascota" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
          <children>
             <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mascotas">
                <font>
@@ -119,7 +109,7 @@
             <Line endX="-6.5" layoutX="115.0" layoutY="57.0" startX="-100.0" stroke="#ff9204" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchorDuenos" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="678.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
+      <AnchorPane fx:id="anchorDuenos" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
          <children>
             <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dueños">
                <font>
@@ -165,12 +155,12 @@
             <Font name="Forte" size="13.0" />
          </font>
       </Text>
-      <Button fx:id="agendarCita" layoutX="548.0" layoutY="36.0" mnemonicParsing="false" onAction="#generarCita" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Agendar Cita" textFill="WHITE">
+      <Button fx:id="agendarCita" layoutX="548.0" layoutY="36.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Agendar Cita" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="registro" layoutX="727.0" layoutY="36.0" mnemonicParsing="false" onAction="#registrar" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
+      <Button fx:id="registro" layoutX="727.0" layoutY="36.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

@@ -1,5 +1,7 @@
 package persistencia;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,20 +44,19 @@ public class MedicamentoDAO {
         System.out.println("Agregados");
     }
 
-    public List<Medicamento> getMedicamento(){
+    public ObservableList<Medicamento> getMedicamento(){
         Session session = factory.openSession();
+        ObservableList<Medicamento> medicamentos = FXCollections.observableArrayList();
+
         Criteria cri = session.createCriteria(Medicamento.class);
         List mediacamento = cri.list();
-        if(mediacamento.size()>0){
-            for (Iterator iterator = mediacamento.iterator(); iterator.hasNext();) {
-                Medicamento dao = (Medicamento) iterator.next();
-                System.out.println(dao.getNombre() + " " + dao.getCodigo() + " " + dao.getSustancia() + " " + dao.getFecha_Cad());
-            }
-        } else {
-            System.out.println("No hay datos");
+        for (Iterator iterator = mediacamento.iterator(); iterator.hasNext();) {
+            Medicamento dao = (Medicamento) iterator.next();
+            medicamentos.add(dao);
+            System.out.println(dao.getNombre() + " " + dao.getCodigo() + " " + dao.getSustancia() + " " + dao.getFecha_Cad());
         }
 
-        return mediacamento;
+        return medicamentos;
     }
 
     public void deleteMedicamento(int id){
