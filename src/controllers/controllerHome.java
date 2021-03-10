@@ -153,4 +153,27 @@ public class controllerHome {
         }
     }
 
+    @FXML
+    private void registrar(){
+
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Registros.fxml"));
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+
+    }
+
+    @FXML
+    private void generarCita(){
+
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("GenerarCita.fxml"));
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+
+    }
+
+
 }

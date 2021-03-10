@@ -165,12 +165,12 @@
             <Font name="Forte" size="13.0" />
          </font>
       </Text>
-      <Button fx:id="agendarCita" layoutX="548.0" layoutY="36.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Agendar Cita" textFill="WHITE">
+      <Button fx:id="agendarCita" layoutX="548.0" layoutY="36.0" mnemonicParsing="false" onAction="#generarCita" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Agendar Cita" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="registro" layoutX="727.0" layoutY="36.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
+      <Button fx:id="registro" layoutX="727.0" layoutY="36.0" mnemonicParsing="false" onAction="#registrar" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
