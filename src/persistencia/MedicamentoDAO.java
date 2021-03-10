@@ -70,5 +70,27 @@ public class MedicamentoDAO {
 
     }
 
+    public void actualizar(int id){
+        Session session = factory.openSession();
+
+        Medicamento dao = (Medicamento)session.get(Medicamento.class, id);
+        dao.setNombre("prueba1");
+        dao.setCodigo(111111);
+        dao.setSustancia("prueba1");
+        dao.setFecha_Cad("10/10/2028");
+
+        session.update(dao);
+        session.getTransaction().commit();
+        session.close();
+
+    }
+
+    /*//Obtienes el objeto a modificar
+    MiClase objeto = (MiClase)sesion.get(MiClase.class, idDelObjeto);
+//Lo modificas
+objeto.setAlgunCampo(nuevoValor);
+//Guardas los cambios
+sesion.update(objeto);*/
+
 
 }

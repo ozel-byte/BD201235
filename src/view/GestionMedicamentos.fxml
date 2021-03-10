@@ -17,6 +17,11 @@
             <Image url="@../imagenes/AddMed.jpeg" />
          </image>
       </ImageView>
+      <ImageView fx:id="imgModificar" fitHeight="600.0" fitWidth="865.0" layoutX="-70.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../imagenes/modificarMed.jpeg" />
+         </image>
+      </ImageView>
       <Text fx:id="addMedicamento" fill="#63636b" layoutX="460.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Medicamento">
          <font>
             <Font name="Segoe UI Bold" size="30.0" />
