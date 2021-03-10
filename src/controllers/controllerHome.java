@@ -104,6 +104,9 @@ public class controllerHome {
     @FXML
     private void initialize(){
         h=this;
+        MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+        //medicamentoDAO.actualizar(2);
+
     }
 
     @FXML
@@ -141,6 +144,40 @@ public class controllerHome {
         anchorDuenos.setVisible(false);
         anchorMedi.setVisible(true);
         agregarMed.setVisible(true);
+    }
+
+    @FXML
+    private void registrar(){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Registros.fxml"));
+            Parent root = (Parent)loader.load();
+            //controllerGestionMedicamentos cgm = loader.getController();
+            //cgm.recibir(h);
+
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    private void agendar(){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GenerarCita.fxml"));
+            Parent root = (Parent)loader.load();
+            //controllerGestionMedicamentos cgm = loader.getController();
+            //cgm.recibir(h);
+
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     @FXML
