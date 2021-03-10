@@ -12,33 +12,33 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerLogin">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerLogin">
    <children>
       <ImageView fitHeight="301.0" fitWidth="409.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/Fondo.png" />
+            <Image url="@../imagenes/Fondo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="272.0" fitWidth="467.0" layoutX="450.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/Fondo.png" />
+            <Image url="@../imagenes/Fondo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="301.0" fitWidth="409.0" layoutX="25.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/Fondo.png" />
+            <Image url="@../imagenes/Fondo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="272.0" fitWidth="467.0" layoutX="469.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/Fondo.png" />
+            <Image url="@../imagenes/Fondo.png" />
          </image>
       </ImageView>
       <Pane layoutX="318.0" layoutY="112.0" prefHeight="376.0" prefWidth="302.0" style="-fx-background-color: #F2F5FA; -fx-background-radius: 10;">
          <children>
             <ImageView fitHeight="110.0" fitWidth="141.0" layoutX="97.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../imagenes/Logo_v3.png" />
+                  <Image url="@../imagenes/Logo_v3.png" />
                </image>
             </ImageView>
             <Text fill="#979595" layoutX="64.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
@@ -53,7 +53,7 @@
          <effect>
             <DropShadow height="51.36" radius="28.975" width="66.54">
                <color>
-                  <Color red="0.7699999809265137" green="0.7699999809265137" blue="0.7699999809265137" opacity="0.9237288236618042" />
+                  <Color blue="0.7699999809265137" green="0.7699999809265137" opacity="0.9237288236618042" red="0.7699999809265137" />
                </color>
             </DropShadow>
          </effect>

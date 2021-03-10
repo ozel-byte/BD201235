@@ -72,7 +72,7 @@
       </Button>
       <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="24.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/perrito_dx.png" />
+            <Image url="@../imagenes/perrito_dx.png" />
          </image>
       </ImageView>
       <Text fill="#8065ff" layoutX="76.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veterinaria">
@@ -87,7 +87,7 @@
       </Text>
       <ImageView fitHeight="103.0" fitWidth="90.0" layoutX="257.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../imagenes/Hospital.png" />
+            <Image url="@../imagenes/Hospital.png" />
          </image>
       </ImageView>
    </children>
