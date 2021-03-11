@@ -1,13 +1,13 @@
 package persistencia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Servicio implements Serializable {
     private int id;
     private String tipo;
     private int costo;
-    private ArrayList<Cita> cita;
+    private List<Cita> cita;
 
 
     public Servicio(){
@@ -42,11 +42,11 @@ public class Servicio implements Serializable {
         this.costo = costo;
     }
 
-    public ArrayList<Cita> getCita() {
+    public List<Cita> getCita() {
         return cita;
     }
 
-    public void setCita(ArrayList<Cita> cita) {
+    public void setCita(List<Cita> cita) {
         this.cita = cita;
     }
 }

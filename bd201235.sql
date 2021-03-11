@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Linux (x86_64)
+CREATE DATABASE  IF NOT EXISTS `bd201235` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bd201235`;
+-- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: bd201235
+-- Host: 127.0.0.1    Database: bd201235
 -- ------------------------------------------------------
--- Server version	8.0.23-0ubuntu0.20.04.1
+-- Server version	8.0.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,12 +25,12 @@ DROP TABLE IF EXISTS `cita`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cita` (
-  `idcita` int NOT NULL,
+  `idcita` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` varchar(45) NOT NULL,
-  `idmascota` int NOT NULL,
-  `idservicio` int NOT NULL,
+  `idmascota` int(11) NOT NULL,
+  `idservicio` int(11) NOT NULL,
   PRIMARY KEY (`idcita`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +39,7 @@ CREATE TABLE `cita` (
 
 LOCK TABLES `cita` WRITE;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
+INSERT INTO `cita` VALUES (1,'20/03/21',1,1),(2,'25/03/21',2,2),(3,'30/03/21',3,3);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -48,13 +51,13 @@ DROP TABLE IF EXISTS `duenom`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `duenom` (
-  `idduenoM` int NOT NULL AUTO_INCREMENT,
+  `idduenoM` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `telefono` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   PRIMARY KEY (`idduenoM`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +66,7 @@ CREATE TABLE `duenom` (
 
 LOCK TABLES `duenom` WRITE;
 /*!40000 ALTER TABLE `duenom` DISABLE KEYS */;
-INSERT INTO `duenom` VALUES (1,'Kevin','Av Central poniente','961123','kevinTatogamer@gmail.com'),(2,'Kevin','Av Central poniente','961123','kevinTatogamer@gmail.com'),(3,'omar','Av tercera sur','9611987','BosstGamer@gmail.com'),(4,'Magin','Segunda norte oriente','961198721','Magintiktok@gmail.com'),(5,'Ozel','Av revolucion','971120323','robbin@gmail.com');
+INSERT INTO `duenom` VALUES (1,'Kevin','Av Central poniente','961123','kevinTatogamer@gmail.com'),(2,'Kevin','Av Central poniente','961123','kevinTatogamer@gmail.com'),(3,'omar','Av tercera sur','9611987','BosstGamer@gmail.com'),(4,'Magin','Segunda norte oriente','961198721','Magintiktok@gmail.com'),(5,'Ozel','Av revolucion','971120323','robbin@gmail.com'),(6,'Prueba1','prueba1','1234567890','prueba1');
 /*!40000 ALTER TABLE `duenom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,10 +78,10 @@ DROP TABLE IF EXISTS `mascota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mascota` (
-  `idmascota` int NOT NULL AUTO_INCREMENT,
+  `idmascota` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
-  `idduenoM` int NOT NULL,
-  `idtipoM` int NOT NULL,
+  `idduenoM` int(11) NOT NULL,
+  `idtipoM` int(11) NOT NULL,
   PRIMARY KEY (`idmascota`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -101,13 +104,13 @@ DROP TABLE IF EXISTS `medicamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medicamento` (
-  `idmedicamento` int NOT NULL,
-  `codigo` int NOT NULL,
+  `idmedicamento` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `sustancia` varchar(45) NOT NULL,
   `fecha_cad` varchar(45) NOT NULL,
   PRIMARY KEY (`idmedicamento`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +119,7 @@ CREATE TABLE `medicamento` (
 
 LOCK TABLES `medicamento` WRITE;
 /*!40000 ALTER TABLE `medicamento` DISABLE KEYS */;
+INSERT INTO `medicamento` VALUES (1,654321,'Bolfo - Talco Antipulgas','Propoxur','10/10/25'),(2,123456,'Golden Dog - Enjuage Bucal Antisarro','agentes tensoactivos','10/10/25'),(3,135790,'BROSIN TUBO','Sulfato de Neomicina','10/10/25'),(4,98765,'BRAVO SPRAY','Permetrina','10/10/25'),(23,212121,'Prueba2','Prueba2','03/12/25');
 /*!40000 ALTER TABLE `medicamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,11 +131,11 @@ DROP TABLE IF EXISTS `servicio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `servicio` (
-  `idservicio` int NOT NULL,
+  `idservicio` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(45) NOT NULL,
-  `costo` int NOT NULL,
+  `costo` int(11) NOT NULL,
   PRIMARY KEY (`idservicio`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,6 +144,7 @@ CREATE TABLE `servicio` (
 
 LOCK TABLES `servicio` WRITE;
 /*!40000 ALTER TABLE `servicio` DISABLE KEYS */;
+INSERT INTO `servicio` VALUES (1,'Cirugia',500),(2,'Vacuna',50),(3,'Baño',150);
 /*!40000 ALTER TABLE `servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +156,7 @@ DROP TABLE IF EXISTS `tipom`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipom` (
-  `idtipoM` int NOT NULL AUTO_INCREMENT,
+  `idtipoM` int(11) NOT NULL AUTO_INCREMENT,
   `especie` varchar(45) NOT NULL,
   `sexo` varchar(45) NOT NULL,
   `raza` varchar(45) NOT NULL,
@@ -177,7 +182,7 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `idusuario` int NOT NULL AUTO_INCREMENT,
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `status` varchar(45) DEFAULT NULL,
@@ -205,4 +210,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-09 13:10:17
+-- Dump completed on 2021-03-10 22:59:04

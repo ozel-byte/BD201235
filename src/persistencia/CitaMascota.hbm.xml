@@ -8,7 +8,7 @@
 
         <property name="fecha" column="fecha"/>
 
-        <many-to-one name="mascotaC" class="TipoMascota" fetch="select">
+        <many-to-one name="mascotaC" class="Mascota" fetch="select">
             <column name="idmascota" not-null="true"/>
         </many-to-one>
 
