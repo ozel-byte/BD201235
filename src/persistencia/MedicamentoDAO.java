@@ -71,17 +71,19 @@ public class MedicamentoDAO {
 
     }
 
-    public void actualizar(int id){
+    public void actualizar(Medicamento medicamento){
         Session session = factory.openSession();
+        Transaction tx = null;
+        tx = session.beginTransaction();
+        Medicamento dao = (Medicamento)session.get(Medicamento.class, medicamento.getIdmedicamento());
 
-        Medicamento dao = (Medicamento)session.get(Medicamento.class, id);
-        dao.setNombre("prueba1");
-        dao.setCodigo(111111);
-        dao.setSustancia("prueba1");
-        dao.setFecha_Cad("10/10/2028");
+        dao.setNombre(medicamento.getNombre());
+        dao.setCodigo(medicamento.getCodigo());
+        dao.setSustancia(medicamento.getSustancia());
+        dao.setFecha_Cad(medicamento.getFecha_Cad());
 
         session.update(dao);
-        session.getTransaction().commit();
+        tx.commit();
         session.close();
 
     }

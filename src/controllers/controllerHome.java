@@ -18,9 +18,6 @@ import javafx.util.Callback;
 import persistencia.Medicamento;
 import persistencia.MedicamentoDAO;
 
-import java.time.format.DateTimeFormatter;
-
-
 public class controllerHome {
 
     @FXML
@@ -100,13 +97,12 @@ public class controllerHome {
 
     ObservableList<Medicamento> mediObservable = FXCollections.observableArrayList();
     controllerHome h;
+    MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+
 
     @FXML
     private void initialize(){
         h=this;
-        MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
-        //medicamentoDAO.actualizar(2);
-
     }
 
     @FXML
@@ -182,13 +178,13 @@ public class controllerHome {
 
     @FXML
     private void addMedi(){
-
+        Medicamento medicamento = new Medicamento();
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GestionMedicamentos.fxml"));
             Parent root = (Parent)loader.load();
             controllerGestionMedicamentos cgm = loader.getController();
-            cgm.recibir(h);
+            cgm.recibir(h,1, medicamentoDAO, medicamento);
 
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -200,7 +196,7 @@ public class controllerHome {
 
     @FXML
     public void obeserbaleMedicamentos(){
-        MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
+
         mediObservable = medicamentoDAO.getMedicamento();
         tableMed.setItems(mediObservable);
         cNombre.setCellValueFactory(Celldata -> Celldata.getValue().nombreProperty());
@@ -227,7 +223,20 @@ public class controllerHome {
                                 Medicamento user = getTableView().getItems().get(getIndex());
                                 System.out.println(user.getNombre()
                                         + "   " + user.getIdmedicamento());
-                                //gestionMedi(2);
+
+                                try {
+                                    Stage stage = new Stage();
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GestionMedicamentos.fxml"));
+                                    Parent root = (Parent)loader.load();
+                                    controllerGestionMedicamentos cgm = loader.getController();
+                                    cgm.recibir(h,2, medicamentoDAO, user);
+
+                                    stage.setScene(new Scene(root));
+                                    stage.initModality(Modality.APPLICATION_MODAL);
+                                    stage.show();
+                                }catch (Exception e){
+                                    System.out.println(e);
+                                }
 
                             });
                             btnEliminar.setOnAction(event -> {

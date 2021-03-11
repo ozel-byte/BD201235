@@ -56,12 +56,12 @@
       </Text>
       <TextField fx:id="codigo" layoutX="676.0" layoutY="203.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-radius: 10; -fx-border-color: #707070; -fx-border-radius: 10;" />
       <TextField fx:id="sustancia" layoutX="450.0" layoutY="301.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-radius: 10; -fx-border-color: #707070; -fx-border-radius: 10;" />
-      <Button fx:id="btAgregar" layoutX="481.0" layoutY="423.0" mnemonicParsing="false" onAction="#agregar" prefHeight="40.0" prefWidth="351.0" style="-fx-background-color: #0C75FF; -fx-background-radius: 10;" text="Agregar" textFill="WHITE">
+      <Button fx:id="btAgregar" layoutX="481.0" layoutY="423.0" mnemonicParsing="false" onAction="#gestion" prefHeight="40.0" prefWidth="351.0" style="-fx-background-color: #0C75FF; -fx-background-radius: 10;" text="Agregar" textFill="WHITE">
          <font>
             <Font name="Segoe UI Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btModificar" layoutX="481.0" layoutY="423.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="351.0" style="-fx-background-color: #0C75FF; -fx-background-radius: 10;" text="Modificar" textFill="WHITE" visible="false">
+      <Button fx:id="btModificar" layoutX="481.0" layoutY="423.0" mnemonicParsing="false" onAction="#gestion" prefHeight="40.0" prefWidth="351.0" style="-fx-background-color: #0C75FF; -fx-background-radius: 10;" text="Modificar" textFill="WHITE" visible="false">
          <font>
             <Font name="Segoe UI Bold" size="20.0" />
          </font>
