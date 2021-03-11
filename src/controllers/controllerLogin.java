@@ -64,6 +64,11 @@ public class controllerLogin {
             updateMessage("done!");
 
         }
+        @Override
+        protected void failed() {
+            super.failed();
+            loading.setVisible(false);
+        }
     };
 
     public void ventananew(String ruta){

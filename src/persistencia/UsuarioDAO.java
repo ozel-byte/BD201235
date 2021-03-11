@@ -50,8 +50,14 @@ public class UsuarioDAO {
         }
         return userID;
     }
-    public void deleteUsuario(){
-
+    public void deleteUsuario(int id){
+        Session session = factory.openSession();
+        Transaction tx = null;
+        tx = session.beginTransaction();
+        Usuario dao = (Usuario) session.get(Usuario.class, id);
+        session.delete(dao);
+        tx.commit();
+      session.close();
     }
     public void updateUsuario(){}
 
@@ -69,6 +75,8 @@ public class UsuarioDAO {
             return user;
         }
 
+        s.close();
+
         return null;
 
     }
@@ -82,6 +90,8 @@ public class UsuarioDAO {
             Usuario user = (Usuario)results.get(i);
             users.add(user);
         }
+
+        s.close();
 
         return users;
     }

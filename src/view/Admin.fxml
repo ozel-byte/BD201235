@@ -16,24 +16,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="401.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerAdmin">
+<AnchorPane prefHeight="437.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerAdmin">
    <children>
-      <Label layoutX="14.0" layoutY="28.0" text="Administrador">
+      <Label layoutX="14.0" layoutY="20.0" text="Crear Cuentas">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="listUser" layoutY="89.0" prefHeight="312.0" prefWidth="600.0">
+      <TableView fx:id="listUser" layoutX="-1.0" layoutY="117.0" prefHeight="320.0" prefWidth="661.0">
         <columns>
-          <TableColumn fx:id="nombreUser" prefWidth="117.0" text="Nombre" />
-          <TableColumn fx:id="passUser" prefWidth="97.0" text="password" />
-            <TableColumn fx:id="statusUser" prefWidth="91.0" text="status" />
-            <TableColumn fx:id="rolUser" prefWidth="115.0" text="rol" />
-            <TableColumn fx:id="buttons" prefWidth="232.0" text="-" />
+          <TableColumn fx:id="idUser" prefWidth="72.0" />
+          <TableColumn fx:id="checkUser" prefWidth="45.0" />
+            <TableColumn fx:id="nombreUser" prefWidth="137.0" text="nombre" />
+            <TableColumn fx:id="passUser" minWidth="0.0" prefWidth="108.0" text="password" />
+            <TableColumn fx:id="statusUser" prefWidth="106.0" text="status" />
+            <TableColumn fx:id="rolUser" prefWidth="87.0" text="rol" />
+            <TableColumn fx:id="editarUser" prefWidth="157.0" />
         </columns>
       </TableView>
-      <Button layoutX="508.0" layoutY="51.0" mnemonicParsing="false" onAction="#abrirVentanaDeCrearCuenta" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #1DBFEB;" text="Agregar" textFill="WHITE" />
-      <Pane fx:id="fondoVentaCrearCuenta" layoutX="-1.0" prefHeight="401.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9; -fx-opacity: 0.3;" visible="false">
+      <Button layoutX="14.0" layoutY="69.0" mnemonicParsing="false" onAction="#abrirVentanaDeCrearCuenta" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #1DBFEB;" text="Agregar" textFill="WHITE" />
+      <Pane fx:id="fondoVentaCrearCuenta" layoutX="-1.0" prefHeight="437.0" prefWidth="661.0" style="-fx-background-color: #D9D9D9; -fx-opacity: 0.3;" visible="false">
          <padding>
             <Insets top="20.0" />
          </padding>
@@ -54,7 +56,7 @@
             </DropShadow>
          </effect>
          <children>
-            <Button layoutX="52.0" layoutY="258.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="237.0" style="-fx-background-color: #19BEEF;" text="Agregar" textFill="WHITE" />
+            <Button layoutX="52.0" layoutY="258.0" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="39.0" prefWidth="237.0" style="-fx-background-color: #19BEEF;" text="Agregar" textFill="WHITE" />
             <TextField fx:id="inputNombre" layoutX="60.0" layoutY="115.0" prefHeight="38.0" prefWidth="215.0" promptText="ingrese un nombre" style="-fx-background-color: #fff; -fx-border-color: #E7E7E7; -fx-padding: 5px 10px 5px 25px;" />
             <PasswordField fx:id="inputPassword" layoutX="60.0" layoutY="189.0" prefHeight="38.0" prefWidth="215.0" promptText="ingrese un password" style="-fx-background-color: #fff; -fx-border-color: #E7E7E7; -fx-padding: 5px 10px 5px 25px;">
                <opaqueInsets>
@@ -92,6 +94,42 @@
          <opaqueInsets>
             <Insets left="10.0" right="10.0" />
          </opaqueInsets>
+      </Pane>
+      <Button layoutX="563.0" layoutY="69.0" mnemonicParsing="false" onAction="#abrirventanaEliminar" text="Eliminar" />
+      <Text layoutX="548.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="seleccion:" />
+      <Text fx:id="total" layoutX="623.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Pane fx:id="fondoEliminar" prefHeight="437.0" prefWidth="661.0" style="-fx-background-color: #000; -fx-opacity: 0.5;" visible="false" />
+      <Pane fx:id="ventanaeliminar" layoutX="44.0" layoutY="37.0" prefHeight="363.0" prefWidth="572.0" style="-fx-background-color: #fff; -fx-background-radius: 10px;" visible="false">
+         <children>
+            <Text layoutX="247.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item a Eliminar" />
+            <TableView fx:id="listdelete" layoutY="37.0" prefHeight="259.0" prefWidth="572.0">
+              <columns>
+                <TableColumn fx:id="nombreListDeelete" prefWidth="75.0" text="nombre" />
+                <TableColumn fx:id="passlistDelete" prefWidth="75.0" text="password" />
+                  <TableColumn fx:id="statusListDelete" prefWidth="75.0" text="status" />
+                  <TableColumn fx:id="rolListDelete" prefWidth="75.0" text="rol" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Button fx:id="buttoneliminar" layoutX="189.0" layoutY="307.0" mnemonicParsing="false" onAction="#eliminarUserLista" prefHeight="38.0" prefWidth="215.0" style="-fx-background-color: #FF4646; -fx-background-radius: 5px;" text="eliminar" textFill="WHITE">
+               <effect>
+                  <DropShadow height="25.56" radius="9.622499999999999" spread="0.17" width="14.93">
+                     <color>
+                        <Color red="0.9342105388641357" green="0.12542641162872314" blue="0.12542641162872314" />
+                     </color>
+                  </DropShadow>
+               </effect></Button>
+            <Button layoutX="510.0" layoutY="3.0" mnemonicParsing="false" onAction="#cerrarVentaEliminar" text="x" />
+         </children>
+         <effect>
+            <DropShadow height="37.7" radius="20.247500000000002" width="45.29">
+               <color>
+                  <Color red="0.41999998688697815" green="0.41999998688697815" blue="0.41999998688697815" />
+               </color>
+            </DropShadow>
+         </effect>
       </Pane>
    </children>
 </AnchorPane>
