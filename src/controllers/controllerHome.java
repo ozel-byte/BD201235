@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import persistencia.Dueno;
+import persistencia.DuenoDAO;
 import persistencia.Medicamento;
 import persistencia.MedicamentoDAO;
 
@@ -58,9 +60,6 @@ public class controllerHome {
 
     @FXML
     private ListView<?> listMascota;
-
-    @FXML
-    private AnchorPane anchorDuenos;
 
     @FXML
     private ListView<?> listDuenos;
@@ -260,5 +259,100 @@ public class controllerHome {
         };
         cBotones.setCellFactory(cellFactory);
     }
+
+    //para visualizar los dueños   Hernandez Alvarado Kevin
+    @FXML
+    private AnchorPane anchorDuenos;
+    @FXML
+    private TableView <Dueno> tbvDuenos;
+    @FXML
+    private TableColumn<Dueno, String> colNombre;
+    @FXML
+    private TableColumn<Dueno, String> colDireccion;
+    @FXML
+    private TableColumn<Dueno, String> colTel;
+    @FXML
+    private TableColumn<Dueno, String> colCorreo;
+    @FXML
+    private TableColumn<Dueno, String> colDelete;
+    ObservableList<Dueno> duenoObservableList = FXCollections.observableArrayList();
+    DuenoDAO duenoDAO = new DuenoDAO();
+
+    @FXML
+    public void mostrarDuenos()
+    {
+        anchorHome.setVisible(false);
+        anchorMascota.setVisible(false);
+        anchorDuenos.setVisible(false);
+        anchorMedi.setVisible(false);
+        agregarMed.setVisible(false);
+        anchorDuenos.setVisible(true);
+        duenoObservableList = duenoDAO.getDueno();
+        tbvDuenos.setItems(duenoObservableList);
+        colNombre.setCellValueFactory(new PropertyValueFactory<Dueno, String>("nombre"));
+        colDireccion.setCellValueFactory(new PropertyValueFactory<Dueno, String>("direccion"));
+        colTel.setCellValueFactory(new PropertyValueFactory<Dueno, String>("telefono"));
+        colCorreo.setCellValueFactory(new PropertyValueFactory<Dueno, String>("correo"));
+
+        Callback<TableColumn<Dueno, String>, TableCell<Dueno, String>> cellFactory = new Callback<TableColumn<Dueno, String>, TableCell<Dueno, String>>()
+        {
+            @Override
+            public TableCell call(final TableColumn<Dueno, String> param)
+            {
+
+                final TableCell<Dueno, String> cell = new TableCell<Dueno, String>()
+                {
+                    final Button botonEliminar = new Button("Eliminar");
+                    @Override
+                    public void updateItem(String item, boolean empty)
+                    {
+                        super.updateItem(item, empty);
+                        if (empty)
+                        {
+                            setGraphic(null);
+                            setText(null);
+                        }
+                        else
+                        {
+                           botonEliminar.setOnAction(event -> {
+                               Dueno user = getTableView().getItems().get(getIndex());
+                               duenoDAO.deleteDueno(user.getIdDueno());
+                               Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+                               mensaje.setTitle("Baja de dueño");
+                               mensaje.setHeaderText("Se eliminó correctamente");
+                               mensaje.show();
+                               mostrarDuenos();
+                           });
+                            HBox h = new HBox();
+                            h.setSpacing(15);
+                            h.getChildren().addAll(botonEliminar);
+                            setGraphic(h);
+                            setText(null);
+                        }
+                    }
+
+                };
+            return cell;
+            }
+        };
+        colDelete.setCellFactory(cellFactory);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

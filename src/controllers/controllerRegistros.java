@@ -55,3 +55,4 @@ public class controllerRegistros
       txtdireccion.setText(null);
    }
 }
+//Trabajó este controller Hernández Alvarado Kevin

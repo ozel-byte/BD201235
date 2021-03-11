@@ -1,4 +1,6 @@
 package persistencia;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -28,7 +30,7 @@ public class DuenoDAO {
     }
 
 
-    public void getDueno(){
+    public void getDuenom(){
         Session session = factory.openSession();
         List dueno = session.createQuery("from Dueno").list();
         for (Iterator iterator = dueno.iterator(); iterator.hasNext();){
@@ -49,21 +51,37 @@ public class DuenoDAO {
         System.out.println("Agregados");
     }
 
-    public void modificar()
+    public ObservableList<Dueno> getDueno(){
+        Session session = factory.openSession();
+        ObservableList<Dueno> duenom = FXCollections.observableArrayList();
+
+        Criteria cri = session.createCriteria(Dueno.class);
+        List duenosM = cri.list();
+        for (Iterator iterator = duenosM.iterator(); iterator.hasNext();) {
+            Dueno dao = (Dueno) iterator.next();
+            duenom.add(dao);
+        }
+        return duenom;
+    }
+
+    public void actualizarDueno(Dueno duenio)
     {
-        Dueno cambiar = new Dueno();
+        Session session = factory.openSession();
+        Transaction tx = null;
+        tx = session.beginTransaction();
+        Dueno dao = (Dueno)session.get(Dueno.class, duenio.getIdDueno());
 
-        cambiar.setNombre("hola");
-
-
-        Session session = factory.getCurrentSession();
-        session.beginTransaction();
-        session.save(cambiar);
-        session.getTransaction().commit();
+        dao.setNombre(duenio.getNombre());
+        dao.setDireccion(duenio.getDireccion());
+        dao.setTelefono(duenio.getTelefono());
+        dao.setCorreo(duenio.getCorreo());
+        session.update(dao);
+        tx.commit();
         session.close();
     }
 
-    public void deleteDueno(int id){
+    public void deleteDueno(int id)
+    {
         Session session = factory.openSession();
         Transaction tx = null;
         tx = session.beginTransaction();
@@ -73,3 +91,4 @@ public class DuenoDAO {
         tx.commit();
     }
 }
+//trabajó esta clase Hernández Alvarado Kevin

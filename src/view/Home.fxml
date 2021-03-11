@@ -116,28 +116,19 @@
                   <Font name="Arial Rounded MT Bold" size="28.0" />
                </font>
             </Text>
-            <Text layoutX="93.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <ListView fx:id="listDuenos" layoutX="93.0" layoutY="104.0" prefHeight="303.0" prefWidth="469.0" style="-fx-background-color: #FFFFFF;" />
-            <Text layoutX="217.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Direccion">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="355.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefono">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="495.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
             <Line endX="-6.5" layoutX="115.0" layoutY="57.0" startX="-100.0" stroke="#ff9204" />
+            <TableView fx:id="tbvDuenos" layoutX="15.0" layoutY="84.0" prefHeight="337.0" prefWidth="758.0">
+              <columns>
+                <TableColumn fx:id="colNombre" prefWidth="147.0" text="Nombre" />
+                <TableColumn fx:id="colDireccion" prefWidth="167.0" text="Dirección" />
+                  <TableColumn fx:id="colTel" minWidth="0.0" prefWidth="118.0" text="Teléfono" />
+                  <TableColumn fx:id="colCorreo" prefWidth="172.0" text="Correo" />
+                  <TableColumn fx:id="colDelete" prefWidth="208.0" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children>
       </AnchorPane>
       <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="12.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
@@ -195,7 +186,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btDueno" layoutX="15.0" layoutY="318.0" mnemonicParsing="false" onAction="#btDueno" style="-fx-background-color: none; -fx-background-radius: 10;" text="Dueños" textFill="#848484">
+      <Button fx:id="btDueno" layoutX="15.0" layoutY="318.0" mnemonicParsing="false" onAction="#mostrarDuenos" style="-fx-background-color: none; -fx-background-radius: 10;" text="Dueños" textFill="#848484">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
