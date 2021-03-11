@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerRegistros">
    <children>
-      <Text layoutX="384.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registros">
+      <Text layoutX="384.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro">
          <font>
             <Font name="qtquickcontrols" size="25.0" />
          </font>
@@ -58,25 +58,25 @@
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Text>
-            <TextField layoutX="45.0" layoutY="80.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
+            <TextField fx:id="txtnombre" layoutX="45.0" layoutY="80.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
             <Text layoutX="45.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre ">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <TextField layoutX="45.0" layoutY="154.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
+            <TextField fx:id="txtcorreo" layoutX="45.0" layoutY="154.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
             <Text layoutX="45.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <TextField layoutX="45.0" layoutY="228.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
+            <TextField fx:id="txttelefono" layoutX="45.0" layoutY="228.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
             <Text layoutX="45.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefono">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <TextField layoutX="45.0" layoutY="301.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
+            <TextField fx:id="txtdireccion" layoutX="45.0" layoutY="301.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
             <Text layoutX="45.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Direccion">
                <font>
                   <Font name="System Italic" size="12.0" />
@@ -99,7 +99,7 @@
             <Font name="Segoe UI" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="577.0" layoutY="497.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
+      <Button layoutX="577.0" layoutY="497.0" mnemonicParsing="false" onAction="#guardarDueno" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="13.0" />
          </font>

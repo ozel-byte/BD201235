@@ -15,13 +15,12 @@ public class Dueno implements Serializable
 
     public Dueno (){}
 
-    public Dueno (int idDueno, String nombre, String direccion, String telefono, String correo)
+    public Dueno (String nombre, String direccion, String telefono, String correo)
     {
-        this.idDueno = idDueno;
         this.nombre = nombre;
-        this.telefono = telefono;
         this.direccion = direccion;
-        this.telefono = correo;
+        this.telefono = telefono;
+        this.correo = correo;
     }
 
     public int getIdDueno() {

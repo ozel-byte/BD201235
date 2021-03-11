@@ -38,25 +38,15 @@ public class DuenoDAO {
     }
 
 
-    public Dueno agregarDueno()
+    public void agregarDueno(String nombre, String direccion, String telefono, String correo)
     {
         Session session = factory.openSession();
         session.beginTransaction();
-        //instancia pa iniciar el registro
-        Dueno registro = new Dueno();
-
-        //Agregando
-        registro.setNombre("x3");
-        registro.setCorreo("ejemplo xd");
-        registro.setDireccion("av abc");
-        registro.setTelefono("96123456");
-
-        //se guarda el objeto en la base de datos
-        session.save(registro);
+        Dueno nuevo = new Dueno(nombre, direccion, telefono, correo);
+        session.save(nuevo);
         session.getTransaction().commit();
         session.close();
-
-        return registro;
+        System.out.println("Agregados");
     }
 
     public void modificar()
