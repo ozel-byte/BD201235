@@ -96,3 +96,4 @@ public class UsuarioDAO {
         return users;
     }
 }
+/*Ozel_struct*/

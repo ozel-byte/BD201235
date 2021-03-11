@@ -85,3 +85,5 @@ public class Usuario implements Serializable {
         this.rol.set(rol);
     }
 }
+
+/*Ozel_struct*/

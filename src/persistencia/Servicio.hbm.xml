@@ -11,5 +11,11 @@
         <many-to-one name="citalist" class="Cita" fetch="select">
             <column name="idservicio" not-null="true"/>
         </many-to-one>
+        <bag name="mascota" table="mascota" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idtipoM" not-null="true"/>
+            </key>
+            <one-to-many class="Mascota"/>
+        </bag>
     </class>
 </hibernate-mapping>

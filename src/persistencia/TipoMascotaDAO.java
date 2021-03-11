@@ -89,7 +89,6 @@ public class TipoMascotaDAO {
 
     public void updateTipo(){
         Session session = factory.openSession();
-
         Transaction tx = null;
         tx = session.beginTransaction();
             TipoMascota dao = (TipoMascota) session.get(TipoMascota.class, 1);

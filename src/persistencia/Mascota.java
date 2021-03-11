@@ -15,11 +15,10 @@ public class Mascota implements Serializable {
 
     }
 
-    public Mascota ( String nombre){
-
-        //this.idmascota = idmascota;
-        this.nombre = nombre;
-        //this.idtipo = idtipo;
+    public Mascota (Dueno _dueno,TipoMascota _tipoMascota , String _nombre){
+        this.nombre=_nombre;
+       this.dueno=_dueno;
+       this.tipoMascota=_tipoMascota;
 
     }
 

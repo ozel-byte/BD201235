@@ -1,50 +1,55 @@
 package persistencia;
 
-public class Servicio {
-    private Integer idtipo;
-    private String especie;
-    private String sexo;
-    private String raza;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Servicio implements Serializable {
+    private int id;
+    private String tipo;
+    private int costo;
+    private ArrayList<Cita> cita;
 
 
     public Servicio(){
 
     }
-    public Servicio(String especie, String sexo, String raza){
-        this.especie=especie;
-        this.sexo=sexo;
-        this.raza=raza;
+    public Servicio(String _nombreServicio, int _costo){
+       this.tipo=_nombreServicio;
+       this.costo=_costo;
     }
 
-    public Integer getIdtipo() {
-        return idtipo;
+    public int getId() {
+        return id;
     }
 
-    public void setIdtipo(Integer idtipo) {
-        this.idtipo = idtipo;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getEspecie() {
-        return especie;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getSexo() {
-        return sexo;
+    public int getCosto() {
+        return costo;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setCosto(int costo) {
+        this.costo = costo;
     }
 
-    public String getRaza() {
-        return raza;
+    public ArrayList<Cita> getCita() {
+        return cita;
     }
 
-    public void setRaza(String raza) {
-        this.raza = raza;
+    public void setCita(ArrayList<Cita> cita) {
+        this.cita = cita;
     }
 }
+
+
+/*Ozel_struct*/
