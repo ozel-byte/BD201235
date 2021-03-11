@@ -7,8 +7,14 @@
         </id>
 
         <property name="fecha" column="fecha"/>
-        <property name="idmascota" column="idmascota"/>
-        <property name="idservicio" column="idservicio"/>
+
+        <many-to-one name="mascotaC" class="TipoMascota" fetch="select">
+            <column name="idmascota" not-null="true"/>
+        </many-to-one>
+
+        <many-to-one name="servicioC" class="Servicio" fetch="select">
+            <column name="idservicio" not-null="true"/>
+        </many-to-one>
 
     </class>
 </hibernate-mapping>

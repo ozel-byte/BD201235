@@ -3,15 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerGenerarCita">
    <children>
       <Text layoutX="347.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generar Cita">
          <font>
@@ -46,26 +44,18 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <SplitMenuButton layoutX="45.0" layoutY="82.0" minHeight="38.0" minWidth="190.0" mnemonicParsing="false" style="-fx-background-color: #EBEBEB; -fx-background-radius: 0;" text="Cirujia" textFill="#6d6d6d">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Corte de Cabello" />
-                <MenuItem mnemonicParsing="false" text="Vacuna" />
-              </items>
-               <font>
-                  <Font name="Segoe UI" size="12.0" />
-               </font>
-            </SplitMenuButton>
-            <DatePicker layoutX="45.0" layoutY="151.0" minHeight="38.0" minWidth="190.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 0;" />
-            <ComboBox layoutX="45.0" layoutY="228.0" minHeight="38.0" prefWidth="190.0" promptText="Buscar Dueño" style="-fx-background-color: #EBEBEB;" />
-            <ComboBox layoutX="45.0" layoutY="300.0" minHeight="38.0" prefWidth="190.0" promptText="Buscar Mascota" style="-fx-background-color: #EBEBEB;" />
+            <ComboBox fx:id="elegirServicio" layoutX="45.0" layoutY="82.0" minHeight="38.0" prefWidth="190.0" promptText="Buscar Servicio" style="-fx-background-color: #EBEBEB;" />
+            <DatePicker fx:id="fechaCita" layoutX="45.0" layoutY="151.0" minHeight="38.0" minWidth="190.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 0;" />
+            <ComboBox fx:id="buscarDueno" layoutX="45.0" layoutY="228.0" minHeight="38.0" prefWidth="190.0" promptText="Buscar Dueño" style="-fx-background-color: #EBEBEB;" />
+            <ComboBox fx:id="buscarMascota" layoutX="45.0" layoutY="300.0" minHeight="38.0" prefWidth="190.0" promptText="Buscar Mascota" style="-fx-background-color: #EBEBEB;" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="18.0" fitWidth="23.0" layoutX="498.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="484.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Downloads/calendar.png" />
+            <Image url="@../imagenes/calendario.png" />
          </image>
       </ImageView>
-      <Button layoutX="390.0" layoutY="549.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Generar Cita" textFill="WHITE">
+      <Button fx:id="generarCita" layoutX="390.0" layoutY="549.0" mnemonicParsing="false" onAction="#generarCita" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Generar Cita" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="13.0" />
          </font>
