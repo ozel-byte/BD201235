@@ -3,9 +3,13 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistencia.*;
 
@@ -34,16 +38,20 @@ public class controllerGenerarCita {
     private Button generarCita;
 
     controllerHome h;
+    controllerRegistros cr;
+
 
     @FXML
-    public void recibir(controllerHome h){
-        this.h = h;
+    public void recibir(controllerHome _h){
+        this.h = _h;
+        //h.llenarListaCitas();
     }
 
     @FXML
     private void initialize(){
         llenarComboDueno();
         llenarComboServicio();
+
 
     }
 
@@ -57,13 +65,27 @@ public class controllerGenerarCita {
             Servicio servicio = elegirServicio.getValue();
             Mascota mascota = buscarMascota.getValue();
             citaDAO.agregar(mascota, servicio, fecha);
-
-            h.llenarListaCitas();
-
+            salir();
 
 
         } else {
             System.out.println("llego aqui 2");
+        }
+    }
+    @FXML
+    public void abrirHomeBack(){
+        try{
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
+            Parent root = (Parent)loader.load();
+
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            Stage stage2 = (Stage) btExit.getScene().getWindow();
+            stage2.close();
+        }catch (Exception e){
+            System.out.println(e);
         }
     }
 
@@ -106,8 +128,9 @@ public class controllerGenerarCita {
 
     @FXML
     private void salir(){
-        Stage stage = (Stage) btExit.getScene().getWindow();
-        stage.close();
+        abrirHomeBack();
     }
+
+
 
 }

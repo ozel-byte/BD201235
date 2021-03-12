@@ -55,6 +55,7 @@ public class controllerLogin {
                     System.out.println("aqui 2");
                     ventananew("../view/Admin.fxml");
                 }else if (resp.getRol().equals("user")){
+                    System.out.println("llego hasta aqui 6");
                     ventananew("../view/Home.fxml");
                 }
 

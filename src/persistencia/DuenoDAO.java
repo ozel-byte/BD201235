@@ -39,15 +39,17 @@ public class DuenoDAO {
         }
     }*/
 
-    public void agregarDueno(String nombre, String direccion, String telefono, String correo)
+    public Dueno agregarDueno(String nombre, String direccion, String telefono, String correo)
     {
         Session session = factory.openSession();
+        Integer duenoId;
         session.beginTransaction();
         Dueno nuevo = new Dueno(nombre, direccion, telefono, correo);
-        session.save(nuevo);
+     duenoId = (Integer) session.save(nuevo);
         session.getTransaction().commit();
         session.close();
         System.out.println("Agregados");
+        return nuevo;
     }
 
     public ObservableList<Dueno> getDueno(){

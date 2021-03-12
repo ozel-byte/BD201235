@@ -49,14 +49,14 @@ public class CitaDAO {
     public ObservableList<Cita> obtenerCita(){
         Session session = factory.openSession();
         ObservableList<Cita> citas = FXCollections.observableArrayList();
-
         Criteria cri = session.createCriteria(Cita.class);
         List cita = cri.list();
-        for (Iterator iterator = cita.iterator(); iterator.hasNext();) {
-            Cita dao = (Cita) iterator.next();
+        for (int i=0; i<cita.size(); i++) {
+            Cita dao =(Cita) cita.get(i);
             citas.add(dao);
-            System.out.println(dao.getIdcita() + " " + dao.getMascotaC().getNombre() + " " + dao.getServicioC().getTipo());
+           // System.out.println(dao.getIdcita() + " " + dao.getMascotaC().getNombre() + " " + dao.getServicioC().getTipo());
         }
+        System.out.println("llego hasta aqui 2");
         return citas;
     }
 

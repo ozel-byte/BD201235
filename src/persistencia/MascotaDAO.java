@@ -8,7 +8,6 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 
-import java.util.Iterator;
 import java.util.List;
 
 public class MascotaDAO {
@@ -29,13 +28,14 @@ public class MascotaDAO {
         }
     }
 
-    public Integer agregarMascota(Dueno dueno, TipoMascota tipoMascota, String nombre){
+    public Mascota agregarMascota(Dueno dueno, TipoMascota tipoMascota, String nombre){
         Session session = factory.openSession();
+        Mascota mascota = new Mascota();
         Transaction tx = null;
         Integer mascotaId = null;
         try {
             tx = session.beginTransaction();
-            Mascota mascota = new Mascota(dueno,tipoMascota,nombre);
+             mascota = new Mascota(dueno,tipoMascota,nombre);
             mascotaId = (Integer) session.save(mascota);
             tx.commit();
         } catch (HibernateException e) {
@@ -44,7 +44,7 @@ public class MascotaDAO {
         } finally {
             session.close();
         }
-        return mascotaId;
+        return mascota;
 
 
     }

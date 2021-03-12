@@ -133,27 +133,27 @@
             </TableView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="12.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/perrito_dx.png" />
          </image>
       </ImageView>
-      <Text fill="#8065ff" layoutX="86.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veterinaria">
+      <Text fill="#8065ff" layoutX="90.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veterinaria">
          <font>
             <Font name="Forte" size="13.0" />
          </font>
       </Text>
-      <Text fill="#8065ff" layoutX="102.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feliz">
+      <Text fill="#8065ff" layoutX="111.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feliz">
          <font>
             <Font name="Forte" size="13.0" />
          </font>
       </Text>
-      <Button fx:id="agendarCita" layoutX="548.0" layoutY="36.0" mnemonicParsing="false" onAction="#agendar" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Agendar Cita" textFill="WHITE">
+      <Button fx:id="agendarCita" layoutX="600.0" layoutY="22.0" mnemonicParsing="false" onAction="#agendar" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Agendar Cita" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="registro" layoutX="727.0" layoutY="36.0" mnemonicParsing="false" onAction="#registrar" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
+      <Button fx:id="registro" layoutX="747.0" layoutY="22.0" mnemonicParsing="false" onAction="#registrar" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #3B97FF; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

@@ -29,18 +29,15 @@ public class TipoMascotaDAO {
         }
     }
 
-    public TipoMascota crearTipo(String especie, String sexo, String raza){
+    public TipoMascota crearTipo(TipoMascota tipoMascota){
         Session session = factory.openSession();
         session.beginTransaction();
-
-        TipoMascota tm = new TipoMascota(especie, sexo, raza);
-        session.save(tm);
-
+        Integer tipoMascotaId = null;
+        session.save(tipoMascota);
         session.getTransaction().commit();
         session.close();
 
-        System.out.println("Agregados");
-        return tm;
+       return tipoMascota;
     }
 
     //Metodo para obtener todos los tipos de mascotas
@@ -49,7 +46,7 @@ public class TipoMascotaDAO {
         List tipomascota = session.createQuery("from TipoMascota").list();
         for (Iterator iterator = tipomascota.iterator(); iterator.hasNext();){
             TipoMascota dao = (TipoMascota) iterator.next();
-            System.out.println(dao.getEspecie() + " " + dao.getSexo() + " " + dao.getRaza());
+
         }
     }
 
@@ -59,7 +56,7 @@ public class TipoMascotaDAO {
         List tipomascota = cri.list();
         for (Iterator iterator = tipomascota.iterator(); iterator.hasNext();) {
             TipoMascota dao = (TipoMascota) iterator.next();
-            System.out.println(dao.getEspecie() + " " + dao.getSexo() + " " + dao.getRaza());
+
         }
     }
 
@@ -71,7 +68,7 @@ public class TipoMascotaDAO {
         List aux = dao.getMascota();
         for(Iterator iterator = aux.iterator(); iterator.hasNext();){
             Mascota da = (Mascota) iterator.next();
-            System.out.println(da.getNombre() + "  tipo: " + da.getTipoMascota().getEspecie() + "  Raza: " + da.getTipoMascota().getRaza() + "  Duenño " + da.getDueno().getNombre());
+
         }
     }
 

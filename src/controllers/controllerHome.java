@@ -105,6 +105,9 @@ public class controllerHome {
 
     @FXML
     private TableColumn<Cita, String> buttonsCita;
+    @FXML
+    private Button agendarCita;
+
 
     ObservableList<Dueno> duenoObservableList = FXCollections.observableArrayList();
     DuenoDAO duenoDAO = new DuenoDAO();
@@ -116,7 +119,9 @@ public class controllerHome {
 
     @FXML
     private void initialize(){
+        System.out.println("llego hasta aqui 4");
         h=this;
+        System.out.println("llego hasta aqui 5");
         llenarListaCitas();
     }
 
@@ -124,8 +129,10 @@ public class controllerHome {
     public void llenarListaCitas(){
         ObservableList<Cita> listCita = FXCollections.observableArrayList();
         CitaDAO cd = new CitaDAO();
+        System.out.println("llego 3");
         listCita = cd.obtenerCita();
         tablaCita.setItems(listCita);
+        System.out.println("llego hasta aqui 8");
         fechaCita2.setCellValueFactory(cellData -> cellData.getValue().fechaProperty());
         nombreCita.setCellValueFactory(cellData -> cellData.getValue().getMascotaC().nombreProperty());
         servicioCita.setCellValueFactory(cellData -> cellData.getValue().getServicioC().tipoProperty());
@@ -146,6 +153,7 @@ public class controllerHome {
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
+                                System.out.println("llego hasta aqui 9");
                                 Cita user = getTableView().getItems().get(getIndex());
                                 System.out.println(user.getFecha()
                                         + "   " + user.getIdcita());
@@ -184,7 +192,9 @@ public class controllerHome {
                 return cell;
             }
         };
+
         buttonsCita.setCellFactory(cellFactory);
+        System.out.println("llego hasta aqui 10");
     }
 
     @FXML
@@ -309,6 +319,8 @@ public class controllerHome {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+            Stage stage2 = (Stage) agendarCita.getScene().getWindow();
+            stage2.close();
         }catch (Exception e){
             System.out.println(e);
         }

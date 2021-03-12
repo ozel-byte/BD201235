@@ -61,14 +61,14 @@ public class ServicioDAO {
     public ObservableList<Servicio> obtenerServicio(){
         Session session = factory.openSession();
         ObservableList<Servicio> servicioList = FXCollections.observableArrayList();
-
         Criteria c = session.createCriteria(Servicio.class);
         List sL = c.list();
         for(Iterator iterator = sL.iterator(); iterator.hasNext();){
             Servicio dao = (Servicio)iterator.next();
             servicioList.add(dao);
         }
-        //session.close();
+        session.close();
+        System.out.println("llego hasta aqui 7");
         return servicioList;
     }
 

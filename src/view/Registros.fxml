@@ -3,13 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerRegistros">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerRegistros">
    <children>
       <Text layoutX="384.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro">
          <font>
@@ -17,41 +19,53 @@
          </font>
       </Text>
       <Button fx:id="btExit" layoutX="860.0" layoutY="14.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: #F2F5FA; -fx-border-color: #000000; -fx-border-radius: 20;" text="X" />
-      <AnchorPane layoutX="131.0" layoutY="137.0" prefHeight="372.0" prefWidth="279.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
+      <AnchorPane fx:id="cardRegistroMascota" layoutX="10.0" layoutY="137.0" prefHeight="372.0" prefWidth="279.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
          <children>
             <Text layoutX="63.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar Mascota">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Text>
-            <TextField layoutX="36.0" layoutY="76.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
+            <TextField fx:id="nombreMascota" layoutX="36.0" layoutY="76.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
             <Text layoutX="36.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Mascota">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <TextField layoutX="36.0" layoutY="156.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
+            <TextField fx:id="especieMascota" layoutX="36.0" layoutY="156.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
             <Text layoutX="36.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especie de Mascota">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <TextField layoutX="36.0" layoutY="239.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
+            <TextField fx:id="razaMascota" layoutX="36.0" layoutY="239.0" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 0; -fx-background-color: #EBEBEB;" />
             <Text layoutX="36.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Raza de Mascota">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <RadioButton layoutX="54.0" layoutY="316.0" mnemonicParsing="false" text="Hembra" />
-            <RadioButton layoutX="162.0" layoutY="316.0" mnemonicParsing="false" text="Macho" />
+            <RadioButton fx:id="checkH" layoutX="44.0" layoutY="315.0" mnemonicParsing="false" text="Hembra" />
+            <RadioButton fx:id="checkM" layoutX="152.0" layoutY="315.0" mnemonicParsing="false" text="Macho" />
             <ImageView fitHeight="52.0" fitWidth="64.0" layoutX="-30.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/pet.png" />
                </image>
             </ImageView>
+            <Button layoutX="84.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardarMascota" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="13.0" />
+               </font>
+            </Button>
          </children>
+         <effect>
+            <DropShadow height="24.035" radius="11.51625" spread="0.05" width="24.03">
+               <color>
+                  <Color red="0.6000000238418579" green="0.6000000238418579" blue="0.6000000238418579" opacity="0.8855932354927063" />
+               </color>
+            </DropShadow>
+         </effect>
       </AnchorPane>
-      <AnchorPane layoutX="498.0" layoutY="137.0" prefHeight="372.0" prefWidth="279.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
+      <AnchorPane fx:id="cardRegistroDueno" layoutX="323.0" layoutY="137.0" prefHeight="372.0" prefWidth="279.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
          <children>
             <Text layoutX="71.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar Dueño">
                <font>
@@ -87,24 +101,26 @@
                   <Image url="@../imagenes/Usuario.png" />
                </image>
             </ImageView>
+            <Button fx:id="botonRegistroDueno" layoutX="80.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardarDueno" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="13.0" />
+               </font>
+            </Button>
          </children>
+         <effect>
+            <DropShadow height="36.18" radius="18.3475" spread="0.27" width="39.21">
+               <color>
+                  <Color red="0.7799999713897705" green="0.7799999713897705" blue="0.7799999713897705" opacity="0.8813559412956238" />
+               </color>
+            </DropShadow>
+         </effect>
       </AnchorPane>
       <ImageView fitHeight="18.0" fitWidth="23.0" layoutX="498.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Downloads/calendar.png" />
          </image>
       </ImageView>
-      <Button layoutX="210.0" layoutY="497.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="13.0" />
-         </font>
-      </Button>
-      <Button layoutX="577.0" layoutY="497.0" mnemonicParsing="false" onAction="#guardarDueno" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="13.0" />
-         </font>
-      </Button>
-      <Button layoutX="390.0" layoutY="549.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Generar Cita" textFill="WHITE">
+      <Button layoutX="390.0" layoutY="549.0" mnemonicParsing="false" onAction="#generarCita" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Generar Cita" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="13.0" />
          </font>
