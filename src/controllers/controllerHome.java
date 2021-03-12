@@ -228,6 +228,23 @@ public class controllerHome {
     }
 
     @FXML
+    private void agregarMascota(){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/agregarMascota.fxml"));
+            Parent root = (Parent) loader.load();
+            controllerAgregarMascota ca = (controllerAgregarMascota)loader.getController();
+            ca.recibir(this);
+
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @FXML
     private void btMascota() {
         rellenarListaMascota();
     }
