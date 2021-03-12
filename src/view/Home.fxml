@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerHome">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F5FA;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerHome">
    <children>
       <AnchorPane fx:id="anchorHome" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
          <children>
@@ -51,7 +50,18 @@
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Text>
-            <ListView fx:id="listHome" layoutX="14.0" layoutY="102.0" prefHeight="303.0" prefWidth="402.0" style="-fx-background-color: #FFFFFF;" />
+            <TableView fx:id="tablaCita" layoutY="113.0" prefHeight="298.0" prefWidth="787.0">
+              <columns>
+                <TableColumn fx:id="fechaCita2" prefWidth="75.0" text="fecha" />
+                <TableColumn fx:id="nombreCita" prefWidth="75.0" text="Nombre" />
+                  <TableColumn fx:id="servicioCita" prefWidth="75.0" text="Servicio" />
+                  <TableColumn fx:id="costocita" prefWidth="75.0" text="Costo" />
+                  <TableColumn fx:id="buttonsCita" prefWidth="75.0" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorMedi" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">
@@ -85,28 +95,20 @@
                   <Font name="Arial Rounded MT Bold" size="28.0" />
                </font>
             </Text>
-            <Text layoutX="93.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <ListView fx:id="listMascota" layoutX="93.0" layoutY="104.0" prefHeight="303.0" prefWidth="402.0" style="-fx-background-color: #FFFFFF;" />
-            <Text layoutX="207.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especie">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="324.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Raza">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="408.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dueño">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Text>
             <Line endX="-6.5" layoutX="115.0" layoutY="57.0" startX="-100.0" stroke="#ff9204" />
+            <TableView fx:id="tablaMascota" layoutX="-2.0" layoutY="111.0" prefHeight="313.0" prefWidth="791.0">
+              <columns>
+                <TableColumn fx:id="nombreMascota" prefWidth="75.0" text="nombre" />
+                  <TableColumn fx:id="sexoMascota" prefWidth="75.0" text="sexo" />
+                  <TableColumn fx:id="razaMascota" prefWidth="75.0" text="raza" />
+                  <TableColumn fx:id="duenoid" prefWidth="75.0" text="dueno" />
+                  <TableColumn fx:id="mascotaCita" prefWidth="75.0" text="fechaCita" />
+                  <TableColumn fx:id="botones" prefWidth="75.0" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorDuenos" layoutX="111.0" layoutY="89.0" prefHeight="421.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" visible="false">

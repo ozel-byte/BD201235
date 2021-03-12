@@ -15,10 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import persistencia.Dueno;
-import persistencia.DuenoDAO;
-import persistencia.Medicamento;
-import persistencia.MedicamentoDAO;
+import persistencia.*;
 
 public class controllerHome {
 
@@ -57,42 +54,59 @@ public class controllerHome {
 
     @FXML
     private AnchorPane anchorMascota;
+    @FXML
+    private TableView<Mascota> tablaMascota;
 
     @FXML
-    private ListView<?> listMascota;
+    private TableColumn<Mascota, String> nombreMascota;
 
     @FXML
-    private ListView<?> listDuenos;
+    private TableColumn<Mascota, String> sexoMascota;
 
     @FXML
-    private Button agendarCita;
+    private TableColumn<Mascota, String> razaMascota;
 
     @FXML
-    private Button registro;
+    private TableColumn<Mascota, String> duenoid;
+    @FXML
+    private TableColumn<Mascota, String> mascotaCita;
 
     @FXML
-    private ImageView Home;
+    private TableColumn<Mascota, String> botones;
+    @FXML
+    private AnchorPane anchorDuenos;
+    @FXML
+    private TableView <Dueno> tbvDuenos;
+    @FXML
+    private TableColumn<Dueno, String> colNombre;
+    @FXML
+    private TableColumn<Dueno, String> colDireccion;
+    @FXML
+    private TableColumn<Dueno, String> colTel;
+    @FXML
+    private TableColumn<Dueno, String> colCorreo;
+    @FXML
+    private TableColumn<Dueno, String> colDelete;
+    @FXML
+    private TableView<Cita> tablaCita;
 
     @FXML
-    private ImageView pets;
+    private TableColumn<Cita, String> fechaCita2;
 
     @FXML
-    private ImageView medicamentos;
+    private TableColumn<Cita, String> nombreCita;
 
     @FXML
-    private ImageView users;
+    private TableColumn<Cita, String> servicioCita;
 
     @FXML
-    private Button btHome;
+    private TableColumn<Cita, String> costocita;
 
     @FXML
-    private Button btMascota;
+    private TableColumn<Cita, String> buttonsCita;
 
-    @FXML
-    private Button btDueno;
-
-    @FXML
-    private Button btMedi;
+    ObservableList<Dueno> duenoObservableList = FXCollections.observableArrayList();
+    DuenoDAO duenoDAO = new DuenoDAO();
 
     ObservableList<Medicamento> mediObservable = FXCollections.observableArrayList();
     controllerHome h;
@@ -115,11 +129,69 @@ public class controllerHome {
 
     @FXML
     private void btMascota(){
+        rellenarListaMascota();
+    }
+    public void rellenarListaMascota(){
+        ObservableList<Mascota> masc = FXCollections.observableArrayList();
+        MascotaDAO mascotaDAO = new MascotaDAO();
+        masc=  mascotaDAO.obtenerMascota();
         anchorHome.setVisible(false);
         anchorMascota.setVisible(true);
         anchorDuenos.setVisible(false);
         anchorMedi.setVisible(false);
         agregarMed.setVisible(false);
+        nombreMascota.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
+        sexoMascota.setCellValueFactory(cellData -> cellData.getValue().getTipoMascota().sexoProperty());
+        razaMascota.setCellValueFactory(cellData -> cellData.getValue().getTipoMascota().razaProperty());
+        duenoid.setCellValueFactory(cellData -> cellData.getValue().getDueno().nombreProperty());
+        Callback<TableColumn<Mascota, String>, TableCell<Mascota, String>> cellFactory = new Callback<TableColumn<Mascota, String>, TableCell<Mascota, String>>()
+        {
+            @Override
+            public TableCell call(final TableColumn<Mascota, String> param)
+            {
+
+                final TableCell<Mascota, String> cell = new TableCell<Mascota, String>()
+                {
+                    final Button botonEliminar = new Button("Eliminar");
+                    final Button botonActualizar = new Button("actualizar");
+                    @Override
+                    public void updateItem(String item, boolean empty)
+                    {
+                        super.updateItem(item, empty);
+                        if (empty)
+                        {
+                            setGraphic(null);
+                            setText(null);
+                        }
+                        else
+                        {
+                            botonEliminar.setOnAction(event -> {
+                                Mascota mas = getTableView().getItems().get(getIndex());
+                                MascotaDAO masdao = new MascotaDAO();
+                                masdao.EliminarMascota(mas.getIdmascota());
+                                Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+                                mensaje.setTitle("Baja de dueño");
+                                mensaje.setHeaderText("Se eliminó correctamente");
+                                mensaje.show();
+                               rellenarListaMascota();
+                            });
+                            botonActualizar.setOnAction(event -> {
+
+                            });
+                            HBox h = new HBox();
+                            h.setSpacing(15);
+                            h.getChildren().addAll(botonEliminar,botonActualizar);
+                            setGraphic(h);
+                            setText(null);
+                        }
+                    }
+
+                };
+                return cell;
+            }
+        };
+        botones.setCellFactory(cellFactory);
+        tablaMascota.setItems(masc);
     }
 
     @FXML
@@ -261,22 +333,7 @@ public class controllerHome {
     }
 
     //para visualizar los dueños   Hernandez Alvarado Kevin
-    @FXML
-    private AnchorPane anchorDuenos;
-    @FXML
-    private TableView <Dueno> tbvDuenos;
-    @FXML
-    private TableColumn<Dueno, String> colNombre;
-    @FXML
-    private TableColumn<Dueno, String> colDireccion;
-    @FXML
-    private TableColumn<Dueno, String> colTel;
-    @FXML
-    private TableColumn<Dueno, String> colCorreo;
-    @FXML
-    private TableColumn<Dueno, String> colDelete;
-    ObservableList<Dueno> duenoObservableList = FXCollections.observableArrayList();
-    DuenoDAO duenoDAO = new DuenoDAO();
+
 
     @FXML
     public void mostrarDuenos()
@@ -337,19 +394,6 @@ public class controllerHome {
         };
         colDelete.setCellFactory(cellFactory);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

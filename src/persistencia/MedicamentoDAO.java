@@ -76,7 +76,6 @@ public class MedicamentoDAO {
         Transaction tx = null;
         tx = session.beginTransaction();
         Medicamento dao = (Medicamento)session.get(Medicamento.class, medicamento.getIdmedicamento());
-
         dao.setNombre(medicamento.getNombre());
         dao.setCodigo(medicamento.getCodigo());
         dao.setSustancia(medicamento.getSustancia());
