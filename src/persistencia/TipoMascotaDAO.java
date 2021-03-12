@@ -1,5 +1,7 @@
 package persistencia;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -50,26 +52,29 @@ public class TipoMascotaDAO {
         }
     }
 
-    public void getTipo2(){
+    public ObservableList<TipoMascota> getTipo2(){
+        ObservableList<TipoMascota> tipoarray = FXCollections.observableArrayList();
         Session session = factory.openSession();
         Criteria cri = session.createCriteria(TipoMascota.class);
         List tipomascota = cri.list();
         for (Iterator iterator = tipomascota.iterator(); iterator.hasNext();) {
             TipoMascota dao = (TipoMascota) iterator.next();
-
+            tipoarray.add(dao);
         }
+        return tipoarray;
     }
 
     //Metodo para traer datos de un tipo de mascota en especifico
     public void getTipoM(int id){
         Session session = factory.openSession();
-
+        Mascota da = new Mascota();
         TipoMascota dao =(TipoMascota)session.get(TipoMascota.class, id);
         List aux = dao.getMascota();
-        for(Iterator iterator = aux.iterator(); iterator.hasNext();){
-            Mascota da = (Mascota) iterator.next();
+        for(int i=0; i<aux.size(); i++){
+             da = (Mascota) aux.get(i);
 
         }
+
     }
 
     public void deleteTipo(int id){
@@ -84,13 +89,15 @@ public class TipoMascotaDAO {
 
     }
 
-    public void updateTipo(){
+    public void updateTipo(TipoMascota tipoMascota){
         Session session = factory.openSession();
         Transaction tx = null;
         tx = session.beginTransaction();
-            TipoMascota dao = (TipoMascota) session.get(TipoMascota.class, 1);
-            System.out.println(dao.getRaza());
-            session.update("Husky", dao);
+            TipoMascota dao = (TipoMascota) session.get(TipoMascota.class, tipoMascota.getIdtipo());
+            dao.setSexo(tipoMascota.getSexo());
+            dao.setEspecie(tipoMascota.getEspecie());
+            dao.setRaza(tipoMascota.getRaza());
+            session.update(dao);
 
         tx.commit();
     }

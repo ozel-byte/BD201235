@@ -82,10 +82,8 @@ public class MascotaDAO {
         Session session = factory.openSession();
         Transaction tx = null;
         tx = session.beginTransaction();
-        Mascota mascotaobject = (Mascota) session.get(Mascota.class, mascota.getTipoMascota());
+        Mascota mascotaobject = (Mascota) session.get(Mascota.class, mascota.getIdmascota());
         mascotaobject.setNombre(mascota.getNombre());
-        mascotaobject.setTipoMascota(mascota.getTipoMascota());
-        mascotaobject.setDueno(mascota.getDueno());
         session.update(mascotaobject);
         tx.commit();
         session.close();

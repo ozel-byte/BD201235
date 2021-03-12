@@ -1,6 +1,8 @@
 package controllers;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +19,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import persistencia.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class controllerHome {
 
@@ -77,7 +82,7 @@ public class controllerHome {
     @FXML
     private AnchorPane anchorDuenos;
     @FXML
-    private TableView <Dueno> tbvDuenos;
+    private TableView<Dueno> tbvDuenos;
     @FXML
     private TableColumn<Dueno, String> colNombre;
     @FXML
@@ -111,23 +116,37 @@ public class controllerHome {
 
     ObservableList<Dueno> duenoObservableList = FXCollections.observableArrayList();
     DuenoDAO duenoDAO = new DuenoDAO();
-
+    ObservableList<Cita> arrayCitasPorFecha = FXCollections.observableArrayList();
+    ObservableList<Cita> listCita = FXCollections.observableArrayList();
+    ObservableList<Cita> citaArray = FXCollections.observableArrayList();
     ObservableList<Medicamento> mediObservable = FXCollections.observableArrayList();
     controllerHome h;
     MedicamentoDAO medicamentoDAO = new MedicamentoDAO();
 
 
     @FXML
-    private void initialize(){
+    private void initialize() {
+        fecha.valueProperty().addListener(new ChangeListener<LocalDate>() {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observableValue, LocalDate localDate, LocalDate t1) {
+                CitaDAO citaDAO = new CitaDAO();
+                citaArray =  citaDAO.obtenerCita();
+                listCita.clear();
+              for (int i=0; i<citaArray.size(); i++){
+                  if (citaArray.get(i).getFecha().equals(t1.format(DateTimeFormatter.ofPattern("dd/LL/yy")))){
+                     listCita.add(citaArray.get(i));
+                  }
+              }
+            }
+        });
         System.out.println("llego hasta aqui 4");
-        h=this;
+        h = this;
         System.out.println("llego hasta aqui 5");
         llenarListaCitas();
     }
 
     @FXML
-    public void llenarListaCitas(){
-        ObservableList<Cita> listCita = FXCollections.observableArrayList();
+    public void llenarListaCitas() {
         CitaDAO cd = new CitaDAO();
         System.out.println("llego 3");
         listCita = cd.obtenerCita();
@@ -137,7 +156,7 @@ public class controllerHome {
         nombreCita.setCellValueFactory(cellData -> cellData.getValue().getMascotaC().nombreProperty());
         servicioCita.setCellValueFactory(cellData -> cellData.getValue().getServicioC().tipoProperty());
         costocita.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getServicioC().getCosto())));
-        Callback<TableColumn<Cita, String>, TableCell<Cita, String>> cellFactory = new Callback<TableColumn<Cita, String>, TableCell<Cita, String>>(){
+        Callback<TableColumn<Cita, String>, TableCell<Cita, String>> cellFactory = new Callback<TableColumn<Cita, String>, TableCell<Cita, String>>() {
             @Override
             public TableCell call(final TableColumn<Cita, String> param) {
                 final TableCell<Cita, String> cell = new TableCell<Cita, String>() {
@@ -161,14 +180,14 @@ public class controllerHome {
                                 try {
                                     Stage stage = new Stage();
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/actualizarCita.fxml"));
-                                    Parent root = (Parent)loader.load();
+                                    Parent root = (Parent) loader.load();
                                     controllerActualizarCita cAC = new controllerActualizarCita();
                                     cAC.recibir(h, user);
 
                                     stage.setScene(new Scene(root));
                                     stage.initModality(Modality.APPLICATION_MODAL);
                                     stage.show();
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     System.out.println(e);
                                 }
 
@@ -183,7 +202,7 @@ public class controllerHome {
                             HBox h = new HBox();
                             h.setSpacing(15);
 
-                            h.getChildren().addAll(btn,btnEliminar);
+                            h.getChildren().addAll(btn, btnEliminar);
                             setGraphic(h);
                             setText(null);
                         }
@@ -198,7 +217,7 @@ public class controllerHome {
     }
 
     @FXML
-    private void btHome(){
+    private void btHome() {
         llenarListaCitas();
         anchorHome.setVisible(true);
         anchorMascota.setVisible(false);
@@ -209,13 +228,14 @@ public class controllerHome {
     }
 
     @FXML
-    private void btMascota(){
+    private void btMascota() {
         rellenarListaMascota();
     }
-    public void rellenarListaMascota(){
+
+    public void rellenarListaMascota() {
         ObservableList<Mascota> masc = FXCollections.observableArrayList();
         MascotaDAO mascotaDAO = new MascotaDAO();
-        masc=  mascotaDAO.obtenerMascota();
+        masc = mascotaDAO.obtenerMascota();
         anchorHome.setVisible(false);
         anchorMascota.setVisible(true);
         anchorDuenos.setVisible(false);
@@ -225,27 +245,21 @@ public class controllerHome {
         sexoMascota.setCellValueFactory(cellData -> cellData.getValue().getTipoMascota().sexoProperty());
         razaMascota.setCellValueFactory(cellData -> cellData.getValue().getTipoMascota().razaProperty());
         duenoid.setCellValueFactory(cellData -> cellData.getValue().getDueno().nombreProperty());
-        Callback<TableColumn<Mascota, String>, TableCell<Mascota, String>> cellFactory = new Callback<TableColumn<Mascota, String>, TableCell<Mascota, String>>()
-        {
+        Callback<TableColumn<Mascota, String>, TableCell<Mascota, String>> cellFactory = new Callback<TableColumn<Mascota, String>, TableCell<Mascota, String>>() {
             @Override
-            public TableCell call(final TableColumn<Mascota, String> param)
-            {
+            public TableCell call(final TableColumn<Mascota, String> param) {
 
-                final TableCell<Mascota, String> cell = new TableCell<Mascota, String>()
-                {
+                final TableCell<Mascota, String> cell = new TableCell<Mascota, String>() {
                     final Button botonEliminar = new Button("Eliminar");
                     final Button botonActualizar = new Button("actualizar");
+
                     @Override
-                    public void updateItem(String item, boolean empty)
-                    {
+                    public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (empty)
-                        {
+                        if (empty) {
                             setGraphic(null);
                             setText(null);
-                        }
-                        else
-                        {
+                        } else {
                             botonEliminar.setOnAction(event -> {
                                 Mascota mas = getTableView().getItems().get(getIndex());
                                 MascotaDAO masdao = new MascotaDAO();
@@ -254,14 +268,15 @@ public class controllerHome {
                                 mensaje.setTitle("Baja de dueño");
                                 mensaje.setHeaderText("Se eliminó correctamente");
                                 mensaje.show();
-                               rellenarListaMascota();
+                                rellenarListaMascota();
                             });
                             botonActualizar.setOnAction(event -> {
-
+                                Mascota mas = getTableView().getItems().get(getIndex());
+                                abrirVentanaActualizar(mas);
                             });
                             HBox h = new HBox();
                             h.setSpacing(15);
-                            h.getChildren().addAll(botonEliminar,botonActualizar);
+                            h.getChildren().addAll(botonEliminar, botonActualizar);
                             setGraphic(h);
                             setText(null);
                         }
@@ -276,12 +291,12 @@ public class controllerHome {
     }
 
     @FXML
-    private void btDueno(){
+    private void btDueno() {
         mostrarDuenos();
     }
 
     @FXML
-    private void btMedicamento(){
+    private void btMedicamento() {
         obeserbaleMedicamentos();
         anchorHome.setVisible(false);
         anchorMascota.setVisible(false);
@@ -291,28 +306,28 @@ public class controllerHome {
     }
 
     @FXML
-    private void registrar(){
+    private void registrar() {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Registros.fxml"));
-            Parent root = (Parent)loader.load();
+            Parent root = (Parent) loader.load();
             controllerGenerarCita gc = new controllerGenerarCita();
             gc.recibir(h);
 
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @FXML
-    private void agendar(){
+    private void agendar() {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GenerarCita.fxml"));
-            Parent root = (Parent)loader.load();
+            Parent root = (Parent) loader.load();
             //controllerGestionMedicamentos cgm = loader.getController();
             //cgm.recibir(h);
 
@@ -321,31 +336,31 @@ public class controllerHome {
             stage.show();
             Stage stage2 = (Stage) agendarCita.getScene().getWindow();
             stage2.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @FXML
-    private void addMedi(){
+    private void addMedi() {
         Medicamento medicamento = new Medicamento();
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GestionMedicamentos.fxml"));
-            Parent root = (Parent)loader.load();
+            Parent root = (Parent) loader.load();
             controllerGestionMedicamentos cgm = loader.getController();
-            cgm.recibir(h,1, medicamentoDAO, medicamento);
+            cgm.recibir(h, 1, medicamentoDAO, medicamento);
 
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @FXML
-    public void obeserbaleMedicamentos(){
+    public void obeserbaleMedicamentos() {
 
         mediObservable = medicamentoDAO.getMedicamento();
         tableMed.setItems(mediObservable);
@@ -354,7 +369,7 @@ public class controllerHome {
         cFecha.setCellValueFactory(Celldata -> Celldata.getValue().fecha_CadProperty());
         cCodigo.setCellValueFactory(new PropertyValueFactory<Medicamento, Integer>("codigo"));
 
-        Callback<TableColumn<Medicamento, String>, TableCell<Medicamento, String>> cellFactory = new Callback<TableColumn<Medicamento, String>, TableCell<Medicamento, String>>(){
+        Callback<TableColumn<Medicamento, String>, TableCell<Medicamento, String>> cellFactory = new Callback<TableColumn<Medicamento, String>, TableCell<Medicamento, String>>() {
             @Override
             public TableCell call(final TableColumn<Medicamento, String> param) {
                 final TableCell<Medicamento, String> cell = new TableCell<Medicamento, String>() {
@@ -377,14 +392,14 @@ public class controllerHome {
                                 try {
                                     Stage stage = new Stage();
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/GestionMedicamentos.fxml"));
-                                    Parent root = (Parent)loader.load();
+                                    Parent root = (Parent) loader.load();
                                     controllerGestionMedicamentos cgm = loader.getController();
-                                    cgm.recibir(h,2, medicamentoDAO, user);
+                                    cgm.recibir(h, 2, medicamentoDAO, user);
 
                                     stage.setScene(new Scene(root));
                                     stage.initModality(Modality.APPLICATION_MODAL);
                                     stage.show();
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     System.out.println(e);
                                 }
 
@@ -399,7 +414,7 @@ public class controllerHome {
                             HBox h = new HBox();
                             h.setSpacing(15);
 
-                            h.getChildren().addAll(btn,btnEliminar);
+                            h.getChildren().addAll(btn, btnEliminar);
                             setGraphic(h);
                             setText(null);
                         }
@@ -415,8 +430,7 @@ public class controllerHome {
 
 
     @FXML
-    public void mostrarDuenos()
-    {
+    public void mostrarDuenos() {
         anchorHome.setVisible(false);
         anchorMascota.setVisible(false);
         anchorDuenos.setVisible(false);
@@ -430,35 +444,29 @@ public class controllerHome {
         colTel.setCellValueFactory(new PropertyValueFactory<Dueno, String>("telefono"));
         colCorreo.setCellValueFactory(new PropertyValueFactory<Dueno, String>("correo"));
 
-        Callback<TableColumn<Dueno, String>, TableCell<Dueno, String>> cellFactory = new Callback<TableColumn<Dueno, String>, TableCell<Dueno, String>>()
-        {
+        Callback<TableColumn<Dueno, String>, TableCell<Dueno, String>> cellFactory = new Callback<TableColumn<Dueno, String>, TableCell<Dueno, String>>() {
             @Override
-            public TableCell call(final TableColumn<Dueno, String> param)
-            {
+            public TableCell call(final TableColumn<Dueno, String> param) {
 
-                final TableCell<Dueno, String> cell = new TableCell<Dueno, String>()
-                {
+                final TableCell<Dueno, String> cell = new TableCell<Dueno, String>() {
                     final Button botonEliminar = new Button("Eliminar");
+
                     @Override
-                    public void updateItem(String item, boolean empty)
-                    {
+                    public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (empty)
-                        {
+                        if (empty) {
                             setGraphic(null);
                             setText(null);
-                        }
-                        else
-                        {
-                           botonEliminar.setOnAction(event -> {
-                               Dueno user = getTableView().getItems().get(getIndex());
-                               duenoDAO.deleteDueno(user.getIdDueno());
-                               Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
-                               mensaje.setTitle("Baja de dueño");
-                               mensaje.setHeaderText("Se eliminó correctamente");
-                               mensaje.show();
-                               mostrarDuenos();
-                           });
+                        } else {
+                            botonEliminar.setOnAction(event -> {
+                                Dueno user = getTableView().getItems().get(getIndex());
+                                duenoDAO.deleteDueno(user.getIdDueno());
+                                Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+                                mensaje.setTitle("Baja de dueño");
+                                mensaje.setHeaderText("Se eliminó correctamente");
+                                mensaje.show();
+                                mostrarDuenos();
+                            });
                             HBox h = new HBox();
                             h.setSpacing(15);
                             h.getChildren().addAll(botonEliminar);
@@ -468,14 +476,28 @@ public class controllerHome {
                     }
 
                 };
-            return cell;
+                return cell;
             }
         };
         colDelete.setCellFactory(cellFactory);
     }
 
+    @FXML
+    public void abrirVentanaActualizar(Mascota mas) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ActualizarMascota.fxml"));
+            Parent root = (Parent) loader.load();
+            controllerActualizarMascota ch2 = (controllerActualizarMascota) loader.getController();
+            ch2.recibirParametros(this,mas);
 
-
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
 
 }
