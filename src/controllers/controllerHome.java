@@ -181,7 +181,7 @@ public class controllerHome {
                                     Stage stage = new Stage();
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/actualizarCita.fxml"));
                                     Parent root = (Parent) loader.load();
-                                    controllerActualizarCita cAC = new controllerActualizarCita();
+                                    controllerActualizarCita cAC = (controllerActualizarCita)loader.getController();
                                     cAC.recibir(h, user);
 
                                     stage.setScene(new Scene(root));
@@ -449,15 +449,25 @@ public class controllerHome {
             public TableCell call(final TableColumn<Dueno, String> param) {
 
                 final TableCell<Dueno, String> cell = new TableCell<Dueno, String>() {
+                    final Button btn = new Button("Editar");
                     final Button botonEliminar = new Button("Eliminar");
-
                     @Override
-                    public void updateItem(String item, boolean empty) {
+                    public void updateItem(String item, boolean empty)
+                    {
                         super.updateItem(item, empty);
-                        if (empty) {
+                        if (empty)
+                        {
                             setGraphic(null);
                             setText(null);
-                        } else {
+                        }
+                        else
+                        {
+                            btn.setOnAction(event -> {
+
+                                Dueno AD = getTableView().getItems().get(getIndex());
+                                actulizarD(AD);
+
+                            });
                             botonEliminar.setOnAction(event -> {
                                 Dueno user = getTableView().getItems().get(getIndex());
                                 duenoDAO.deleteDueno(user.getIdDueno());
@@ -469,7 +479,7 @@ public class controllerHome {
                             });
                             HBox h = new HBox();
                             h.setSpacing(15);
-                            h.getChildren().addAll(botonEliminar);
+                            h.getChildren().addAll(btn,botonEliminar);
                             setGraphic(h);
                             setText(null);
                         }
@@ -497,6 +507,27 @@ public class controllerHome {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    //Kevin Omar
+    @FXML
+    private void actulizarD(Dueno dueno){
+
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ActualizarDueno.fxml"));
+            Parent root = (Parent)loader.load();
+            controllerActualizarDueno ad = (controllerActualizarDueno) loader.getController();
+
+            ad.recibir(this, dueno);
+            System.out.println("aqui quedo");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
 

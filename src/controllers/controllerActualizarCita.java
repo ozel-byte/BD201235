@@ -8,9 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import persistencia.Cita;
-import persistencia.Servicio;
-import persistencia.ServicioDAO;
+import persistencia.*;
 
 import java.time.format.DateTimeFormatter;
 
@@ -30,10 +28,8 @@ public class controllerActualizarCita {
     @FXML
     private Text fail;
 
-
-
-    controllerHome h;
-    Cita cita;
+    controllerHome hh;
+    Cita citaA ;
 
     @FXML
     private void initialize(){
@@ -41,17 +37,41 @@ public class controllerActualizarCita {
     }
 
     @FXML
-    public void recibir(controllerHome h, Cita c){
-        this.h = h;
-        cita = c;
+    public void recibir(controllerHome h, Cita cita){
+        hh = h;
+        citaA = cita;
+        System.out.println(citaA.getServicioC().getTipo() + "prueba2");
+        //h.setCita(cita);
+
     }
 
-    @FXML
-    private void actualizarCita(){
+
+   @FXML
+    private void ctualizarCita(){
+
+        if(citaA == null){
+            System.out.println("Es null");
+        }
+
+
         if(fechaCita.getValue() != null && elegirServicio.getValue() != null){
             fail.setVisible(false);
             DateTimeFormatter formatte = DateTimeFormatter.ofPattern("dd/LL/yy");
-            System.out.println(fechaCita.getValue().format(formatte) + " " + elegirServicio.getValue().getTipo());
+            System.out.println(fechaCita.getValue().format(formatte) + " lololol " + elegirServicio.getValue().getTipo());
+            System.out.println("xdxdxd");
+            String f = fechaCita.getValue().format(DateTimeFormatter.ofPattern("dd/LL/yy"));
+            //servicio = elegirServicio.getValue();
+
+            /*citaA.setIdcita(id);
+            citaaa.setMascotaC(mascota);
+            citaaa.setFecha(f);
+            citaaa.setServicioC(servicio);
+
+            System.out.println(citaaa.getServicioC().getTipo());
+
+            citaDAO.actualizar(citaA);*/
+
+
             limpiar();
             good.setVisible(true);
 

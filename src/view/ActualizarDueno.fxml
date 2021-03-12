@@ -8,12 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="469.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="469.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerActualizarDueno">
    <children>
       <AnchorPane layoutX="147.0" layoutY="26.0" prefHeight="372.0" prefWidth="279.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
          <children>
-            <Text layoutX="71.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrar Dueño">
+            <Text layoutX="67.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actualizar Dueño">
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
@@ -49,10 +48,11 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button layoutX="226.0" layoutY="407.0" mnemonicParsing="false" onAction="#guardarDueno" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Actualizar" textFill="WHITE">
+      <Button fx:id="actualizar" layoutX="226.0" layoutY="407.0" mnemonicParsing="false" onAction="#upDate" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Actualizar" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="13.0" />
          </font>
       </Button>
+      <Button fx:id="btExit" layoutX="519.0" layoutY="26.0" mnemonicParsing="false" onAction="#salir" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: none; -fx-border-radius: 30; -fx-border-color: #000000;" text="X" />
    </children>
 </AnchorPane>
