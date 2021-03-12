@@ -40,7 +40,6 @@ public class controllerActualizarCita {
     public void recibir(controllerHome h, Cita cita){
         hh = h;
         citaA = cita;
-        System.out.println(citaA.getServicioC().getTipo() + "prueba2");
         //h.setCita(cita);
 
     }
@@ -49,29 +48,16 @@ public class controllerActualizarCita {
    @FXML
     private void ctualizarCita(){
 
-        if(citaA == null){
-            System.out.println("Es null");
-        }
-
 
         if(fechaCita.getValue() != null && elegirServicio.getValue() != null){
             fail.setVisible(false);
-            DateTimeFormatter formatte = DateTimeFormatter.ofPattern("dd/LL/yy");
-            System.out.println(fechaCita.getValue().format(formatte) + " lololol " + elegirServicio.getValue().getTipo());
-            System.out.println("xdxdxd");
-            String f = fechaCita.getValue().format(DateTimeFormatter.ofPattern("dd/LL/yy"));
-            //servicio = elegirServicio.getValue();
+            citaA.setFecha(fechaCita.getValue().format(DateTimeFormatter.ofPattern("dd/LL/yy")));
+            citaA.setServicioC(elegirServicio.getValue());
 
-            /*citaA.setIdcita(id);
-            citaaa.setMascotaC(mascota);
-            citaaa.setFecha(f);
-            citaaa.setServicioC(servicio);
+            CitaDAO citaDAO = new CitaDAO();
+            citaDAO.actualizar(citaA);
 
-            System.out.println(citaaa.getServicioC().getTipo());
-
-            citaDAO.actualizar(citaA);*/
-
-
+            hh.llenarListaCitas();
             limpiar();
             good.setVisible(true);
 

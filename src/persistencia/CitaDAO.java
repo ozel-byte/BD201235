@@ -72,5 +72,21 @@ public class CitaDAO {
 
     }
 
+    public void actualizar(Cita cita){
+        Session session = factory.openSession();
+        Transaction tx = null;
+        tx = session.beginTransaction();
+        Cita dao = (Cita)session.get(Cita.class, cita.getIdcita());
+
+        dao.setFecha(cita.getFecha());
+        dao.setServicioC(cita.getServicioC());
+
+
+        session.update(dao);
+        tx.commit();
+        session.close();
+
+    }
+
 
 }
