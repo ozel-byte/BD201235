@@ -102,7 +102,6 @@ public class controllerGenerarCita {
         items = servicioDAO.obtenerServicio();
         elegirServicio.setItems(items);
 
-
     }
 
     @FXML

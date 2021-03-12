@@ -64,7 +64,7 @@ public class CitaDAO {
         Session session = factory.openSession();
         Transaction tx = null;
         tx = session.beginTransaction();
-        Cita dao = (Cita) session.get(Medicamento.class, id);
+        Cita dao = (Cita) session.get(Cita.class, id);
         System.out.println(dao.getMascotaC().getNombre());
         session.delete(dao);
 

@@ -155,7 +155,7 @@ public class controllerHome {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/actualizarCita.fxml"));
                                     Parent root = (Parent)loader.load();
                                     controllerActualizarCita cAC = new controllerActualizarCita();
-                                    cAC.recibir(h);
+                                    cAC.recibir(h, user);
 
                                     stage.setScene(new Scene(root));
                                     stage.initModality(Modality.APPLICATION_MODAL);
