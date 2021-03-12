@@ -30,15 +30,14 @@ public class DuenoDAO {
     }
 
 
-    public void getDuenom(){
+    /*public void getDuenom(){
         Session session = factory.openSession();
         List dueno = session.createQuery("from Dueno").list();
         for (Iterator iterator = dueno.iterator(); iterator.hasNext();){
             Dueno dao = (Dueno) iterator.next();
             System.out.println( dao.getNombre()+ "\t" + dao.getCorreo()+"\t" + dao.getDireccion());
         }
-    }
-
+    }*/
 
     public void agregarDueno(String nombre, String direccion, String telefono, String correo)
     {

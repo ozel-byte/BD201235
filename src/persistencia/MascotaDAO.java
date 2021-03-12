@@ -8,6 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 
+import java.util.Iterator;
 import java.util.List;
 
 public class MascotaDAO {
@@ -59,7 +60,6 @@ public class MascotaDAO {
         }
         return mascotaList;
     }
-
 
     public void EliminarMascota(int id) {
 

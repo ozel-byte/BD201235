@@ -28,6 +28,11 @@ public class Dueno implements Serializable
         this.correo.setValue(correo);
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(this.getNombre());
+    }
+
     public int getIdDueno() {
         return idDueno.get();
     }

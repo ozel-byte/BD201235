@@ -27,6 +27,11 @@ public class Mascota implements Serializable {
 
     }
 
+    @Override
+    public String toString(){
+        return String.valueOf(this.getNombre());
+    }
+
     public int getIdmascota() {
         return idmascota.get();
     }

@@ -23,6 +23,11 @@ public class Servicio implements Serializable {
        this.costo.setValue(_costo);
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(this.getTipo());
+    }
+
     public int getId() {
         return id.get();
     }

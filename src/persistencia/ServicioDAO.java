@@ -1,10 +1,14 @@
 package persistencia;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ServicioDAO {
@@ -54,15 +58,21 @@ public class ServicioDAO {
         session.close();
 
     }
-    public void obtenerServicio(){
+    public ObservableList<Servicio> obtenerServicio(){
         Session session = factory.openSession();
-        Criteria c = session.createCriteria(Usuario.class);
-        List results = c.list();
-        for(int i=0; i<results.size(); i++){
-            Servicio servicio = (Servicio) results.get(i);
+        ObservableList<Servicio> servicioList = FXCollections.observableArrayList();
+
+        Criteria c = session.createCriteria(Servicio.class);
+        List sL = c.list();
+        for(Iterator iterator = sL.iterator(); iterator.hasNext();){
+            Servicio dao = (Servicio)iterator.next();
+            servicioList.add(dao);
         }
-        session.close();
+        //session.close();
+        return servicioList;
     }
+
+
 }
 
 /*Ozel_struct*/

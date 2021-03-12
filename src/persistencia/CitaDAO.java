@@ -46,7 +46,7 @@ public class CitaDAO {
         System.out.println("Agregados");
     }
 
-    public ObservableList<Cita> etCita(){
+    public ObservableList<Cita> obtenerCita(){
         Session session = factory.openSession();
         ObservableList<Cita> citas = FXCollections.observableArrayList();
 

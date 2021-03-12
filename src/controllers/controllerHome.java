@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -116,15 +117,85 @@ public class controllerHome {
     @FXML
     private void initialize(){
         h=this;
+        llenarListaCitas();
+    }
+
+    @FXML
+    public void llenarListaCitas(){
+        ObservableList<Cita> listCita = FXCollections.observableArrayList();
+        CitaDAO cd = new CitaDAO();
+        listCita = cd.obtenerCita();
+        tablaCita.setItems(listCita);
+        fechaCita2.setCellValueFactory(cellData -> cellData.getValue().fechaProperty());
+        nombreCita.setCellValueFactory(cellData -> cellData.getValue().getMascotaC().nombreProperty());
+        servicioCita.setCellValueFactory(cellData -> cellData.getValue().getServicioC().tipoProperty());
+        costocita.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getServicioC().getCosto())));
+        Callback<TableColumn<Cita, String>, TableCell<Cita, String>> cellFactory = new Callback<TableColumn<Cita, String>, TableCell<Cita, String>>(){
+            @Override
+            public TableCell call(final TableColumn<Cita, String> param) {
+                final TableCell<Cita, String> cell = new TableCell<Cita, String>() {
+
+                    final Button btn = new Button("Editar");
+                    final Button btnEliminar = new Button("Eliminar");
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            btn.setOnAction(event -> {
+                                Cita user = getTableView().getItems().get(getIndex());
+                                System.out.println(user.getFecha()
+                                        + "   " + user.getIdcita());
+
+                                try {
+                                    Stage stage = new Stage();
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/actualizarCita.fxml"));
+                                    Parent root = (Parent)loader.load();
+                                    controllerActualizarCita cAC = new controllerActualizarCita();
+                                    cAC.recibir(h);
+
+                                    stage.setScene(new Scene(root));
+                                    stage.initModality(Modality.APPLICATION_MODAL);
+                                    stage.show();
+                                }catch (Exception e){
+                                    System.out.println(e);
+                                }
+
+                            });
+                            btnEliminar.setOnAction(event -> {
+                                Cita user = getTableView().getItems().get(getIndex());
+                                System.out.println(user.getFecha()
+                                        + "   " + user.getIdcita());
+                                cd.deleteCita(user.getIdcita());
+                                llenarListaCitas();
+                            });
+                            HBox h = new HBox();
+                            h.setSpacing(15);
+
+                            h.getChildren().addAll(btn,btnEliminar);
+                            setGraphic(h);
+                            setText(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        buttonsCita.setCellFactory(cellFactory);
     }
 
     @FXML
     private void btHome(){
+        llenarListaCitas();
         anchorHome.setVisible(true);
         anchorMascota.setVisible(false);
         anchorDuenos.setVisible(false);
         anchorMedi.setVisible(false);
         agregarMed.setVisible(false);
+
     }
 
     @FXML
@@ -196,11 +267,7 @@ public class controllerHome {
 
     @FXML
     private void btDueno(){
-        anchorHome.setVisible(false);
-        anchorMascota.setVisible(false);
-        anchorDuenos.setVisible(true);
-        anchorMedi.setVisible(false);
-        agregarMed.setVisible(false);
+        mostrarDuenos();
     }
 
     @FXML
@@ -219,8 +286,8 @@ public class controllerHome {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Registros.fxml"));
             Parent root = (Parent)loader.load();
-            //controllerGestionMedicamentos cgm = loader.getController();
-            //cgm.recibir(h);
+            controllerGenerarCita gc = new controllerGenerarCita();
+            gc.recibir(h);
 
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
