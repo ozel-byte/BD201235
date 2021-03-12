@@ -1,18 +1,23 @@
 package controllers;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.AccessibleRole;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import persistencia.Usuario;
@@ -84,20 +89,135 @@ public class controllerAdmin {
     private Button buttoneliminar;
     @FXML
     private Pane ventanaeliminar;
+    @FXML
+    private TextField idtextPassowrd;
 
     @FXML
     private Pane fondoEliminar;
+    @FXML
+    private ImageView candado;
+
+    @FXML
+    private ImageView checkPass1;
+    @FXML
+    private ImageView candadoTextField;
+    @FXML
+    private Text numerocaracteres;
+    @FXML
+    private Button botoncrearCuenta;
+    @FXML
+    private ProgressIndicator loadingCrearCuenta;
+    @FXML
+    private ProgressIndicator loadingEliminar;
+    Integer numerocarac;
 
     Integer contador=0;
     private Integer totalEliminar=0;
     boolean aux=false;
-    int aux2;
+    boolean aux2=false;
     ObservableList<Usuario> listDelete = FXCollections.observableArrayList();
     Usuario user;
+
+    boolean mostrarpass= true;
+
+    Task task = new Task<Void>() {
+        @Override
+        protected Void call() throws Exception {
+            UsuarioDAO usuariodao = new UsuarioDAO();
+            usuariodao.addUsuario(inputNombre.getText(),inputPassword.getText(),"false","user");
+            return null;
+        }
+        @Override
+        protected void succeeded() {
+            super.succeeded();
+            obtenerLista();
+            contador=0;
+            inputNombre.setText("");
+            inputPassword.setText("");
+            loadingCrearCuenta.setVisible(false);
+            crearCuentaVentana.setVisible(false);
+            fondoVentaCrearCuenta.setVisible(false);
+        }
+    };
+    Task taskEliminar = new Task<Void>() {
+        @Override
+        protected Void call() throws Exception {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            for (int i=0; i<listDelete.size(); i++){
+                System.out.println(listDelete.get(i).getNombre()+" "+listDelete.get(i).getId());
+                usuarioDAO.deleteUsuario(listDelete.get(i).getId());
+            }
+            return null;
+        }
+
+        @Override
+        protected void succeeded() {
+            super.succeeded();
+            obtenerLista();
+            contador=0;
+            ventanaeliminar.setVisible(false);
+            fondoEliminar.setVisible(false);
+            loadingEliminar.setVisible(false);
+        }
+    };
 
 
     @FXML
     private void initialize(){
+        checkPass.setOnMouseClicked(event -> {
+            System.out.println("ingreso aqui");
+            idtextPassowrd.setVisible(true);
+            inputPassword.setVisible(false);
+            candado.setVisible(true);
+            candadoTextField.setVisible(true);
+            idtextPassowrd.setText(inputPassword.getText());
+            checkPass1.setVisible(true);
+            checkPass.setVisible(false);
+        });
+        inputNombre.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if (t1.length()>2){
+                    aux=true;
+                    if (aux && aux2){
+                        botoncrearCuenta.setDisable(false);
+                    }
+                }else{
+                    botoncrearCuenta.setDisable(true);
+                    aux=false;
+
+                }
+            }
+        });
+        inputPassword.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                System.out.println(t1);
+                numerocarac = t1.length();
+                if (numerocarac <4){
+                    numerocaracteres.setText(String.valueOf(numerocarac));
+                    numerocaracteres.setFill(Color.RED);
+                    botoncrearCuenta.setDisable(true);
+                }else{
+                    numerocaracteres.setText(String.valueOf(numerocarac));
+                    numerocaracteres.setFill(Color.GREEN);
+                   if (aux){
+                       botoncrearCuenta.setDisable(false);
+                       aux2=true;
+                   }
+                }
+
+            }
+        });
+        checkPass1.setOnMouseClicked(event -> {
+            idtextPassowrd.setVisible(false);
+            inputPassword.setVisible(true);
+            candado.setVisible(true);
+            idtextPassowrd.setText(inputPassword.getText());
+            checkPass1.setVisible(false);
+            checkPass.setVisible(true);
+            candadoTextField.setVisible(false);
+        });
         obtenerLista();
 
     }
@@ -234,12 +354,13 @@ public class controllerAdmin {
     }
     @FXML
     public void agregarUsuario(){
-            UsuarioDAO usuariodao = new UsuarioDAO();
-            usuariodao.addUsuario(inputNombre.getText(),inputPassword.getText(),"false","user");
-            obtenerLista();
-            contador=0;
-            crearCuentaVentana.setVisible(false);
-            fondoVentaCrearCuenta.setVisible(false);
+          Thread t = new Thread(task);
+          t.setDaemon(true);
+          t.start();
+          botoncrearCuenta.setText(" ");
+          loadingCrearCuenta.setVisible(true);
+
+
     }
     @FXML
     public void cerrarVenta(){
@@ -260,17 +381,11 @@ public class controllerAdmin {
 
 
     public void eliminarUserLista(){
-
-    UsuarioDAO usuarioDAO = new UsuarioDAO();
-    for (int i=0; i<listDelete.size(); i++){
-        System.out.println(listDelete.get(i).getNombre()+" "+listDelete.get(i).getId());
-        usuarioDAO.deleteUsuario(listDelete.get(i).getId());
-    }
-    obtenerLista();
-    contador=0;
-    ventanaeliminar.setVisible(false);
-    fondoEliminar.setVisible(false);
-
+        Thread t = new Thread(taskEliminar);
+        t.setDaemon(true);
+        t.start();
+        loadingEliminar.setVisible(true);
+        buttoneliminar.setText(" ");
     }
     public void cerrarVentaEliminar(){
         ventanaeliminar.setVisible(false);
