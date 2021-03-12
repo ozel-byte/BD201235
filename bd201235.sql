@@ -28,7 +28,7 @@ CREATE TABLE `cita` (
   `idmascota` int NOT NULL,
   `idservicio` int NOT NULL,
   PRIMARY KEY (`idcita`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `cita` (
 
 LOCK TABLES `cita` WRITE;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
+INSERT INTO `cita` VALUES (11,'18/03/21',6,3);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +55,7 @@ CREATE TABLE `duenom` (
   `telefono` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   PRIMARY KEY (`idduenoM`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +64,7 @@ CREATE TABLE `duenom` (
 
 LOCK TABLES `duenom` WRITE;
 /*!40000 ALTER TABLE `duenom` DISABLE KEYS */;
+INSERT INTO `duenom` VALUES (12,'jona','revolucion','34565','jona@gmail.com');
 /*!40000 ALTER TABLE `duenom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +81,7 @@ CREATE TABLE `mascota` (
   `idduenoM` int NOT NULL,
   `idtipoM` int NOT NULL,
   PRIMARY KEY (`idmascota`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,6 +90,7 @@ CREATE TABLE `mascota` (
 
 LOCK TABLES `mascota` WRITE;
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
+INSERT INTO `mascota` VALUES (6,'robbin',12,7);
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +159,7 @@ CREATE TABLE `tipom` (
   `sexo` varchar(45) NOT NULL,
   `raza` varchar(45) NOT NULL,
   PRIMARY KEY (`idtipoM`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,7 +168,7 @@ CREATE TABLE `tipom` (
 
 LOCK TABLES `tipom` WRITE;
 /*!40000 ALTER TABLE `tipom` DISABLE KEYS */;
-INSERT INTO `tipom` VALUES (1,'Perro','Hembra','husky'),(2,'Gato','Macho','Persa'),(3,'Serpiente','Hembra','Cascabel'),(4,'Murcielago','Macho','negro'),(5,'perro','Macho','pastor'),(6,'perro','Macho','bol');
+INSERT INTO `tipom` VALUES (1,'Perro','Hembra','husky'),(2,'Gato','Macho','Persa'),(3,'Serpiente','Hembra','Cascabel'),(4,'Murcielago','Macho','negro'),(5,'perro','Macho','pastor'),(6,'perro','Macho','bol'),(7,'perro','Hembra','calle');
 /*!40000 ALTER TABLE `tipom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,4 +208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-12  2:10:17
+-- Dump completed on 2021-03-12  3:52:24

@@ -262,13 +262,7 @@ public class controllerHome {
                         } else {
                             botonEliminar.setOnAction(event -> {
                                 Mascota mas = getTableView().getItems().get(getIndex());
-                                MascotaDAO masdao = new MascotaDAO();
-                                masdao.EliminarMascota(mas.getIdmascota());
-                                Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
-                                mensaje.setTitle("Baja de dueño");
-                                mensaje.setHeaderText("Se eliminó correctamente");
-                                mensaje.show();
-                                rellenarListaMascota();
+                                eliminarMascota(mas);
                             });
                             botonActualizar.setOnAction(event -> {
                                 Mascota mas = getTableView().getItems().get(getIndex());
@@ -303,6 +297,48 @@ public class controllerHome {
         anchorDuenos.setVisible(false);
         anchorMedi.setVisible(true);
         agregarMed.setVisible(true);
+    }
+
+    @FXML
+    public void eliminarMascota(Mascota mas){
+        ObservableList<Cita> citasMasc = FXCollections.observableArrayList();
+        ObservableList<TipoMascota> tipomascotaArray = FXCollections.observableArrayList();
+        ObservableList<Dueno> duenoArray = FXCollections.observableArrayList();
+        ObservableList<Mascota> mascotasArray = FXCollections.observableArrayList();
+        CitaDAO citaDAO = new CitaDAO();
+       citasMasc = citaDAO.obtenerCita();
+       for (int i=0; i<citasMasc.size(); i++){
+           if (citasMasc.get(i).getMascotaC().getIdmascota() == mas.getIdmascota()){
+               citaDAO.deleteCita(citasMasc.get(i).getIdcita());
+           }
+       }
+       TipoMascotaDAO tipoMascotaDAO = new TipoMascotaDAO();
+      tipomascotaArray = tipoMascotaDAO.getTipo2();
+      for (int i=0; i<tipomascotaArray.size(); i++){
+          if (tipomascotaArray.get(i).getIdtipo() == mas.getTipoMascota().getIdtipo()){
+              tipoMascotaDAO.deleteTipo(tipomascotaArray.get(i).getIdtipo());
+          }
+      }
+      DuenoDAO duenoDAO = new DuenoDAO();
+       duenoArray = duenoDAO.getDueno();
+       for (int i=0; i<duenoArray.size(); i++){
+           if (duenoArray.get(i).getIdDueno() == mas.getDueno().getIdDueno()){
+              if (duenoArray.get(i).getMascotaList().size()<2){
+                  duenoDAO.deleteDueno(duenoArray.get(i).getIdDueno());
+                  MascotaDAO masdao = new MascotaDAO();
+                  masdao.EliminarMascota(mas.getIdmascota());
+              }else{
+                  MascotaDAO masdao = new MascotaDAO();
+                  masdao.EliminarMascota(mas.getIdmascota());
+              }
+           }
+       }
+
+        Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+        mensaje.setTitle("Baja");
+        mensaje.setHeaderText("Se eliminó correctamente");
+        mensaje.show();
+        rellenarListaMascota();
     }
 
     @FXML
