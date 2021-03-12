@@ -9,8 +9,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.effect.Effect;
@@ -19,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import persistencia.Usuario;
 import persistencia.UsuarioDAO;
@@ -109,6 +113,8 @@ public class controllerAdmin {
     private ProgressIndicator loadingCrearCuenta;
     @FXML
     private ProgressIndicator loadingEliminar;
+    @FXML
+    private Button cerrarVentanaAdmin;
     Integer numerocarac;
 
     Integer contador=0;
@@ -390,6 +396,21 @@ public class controllerAdmin {
     public void cerrarVentaEliminar(){
         ventanaeliminar.setVisible(false);
         fondoEliminar.setVisible(false);
+    }
+
+    public void cerrarVentanaAdmin(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Login.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+            System.out.println("aqui33");
+            Stage stage2 = (Stage) cerrarVentanaAdmin.getScene().getWindow();
+            stage2.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 }

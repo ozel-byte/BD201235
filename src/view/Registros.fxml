@@ -51,7 +51,7 @@
                   <Image url="@../imagenes/pet.png" />
                </image>
             </ImageView>
-            <Button layoutX="84.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardarMascota" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
+            <Button fx:id="botonRegistrarMascota" layoutX="84.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardarMascota" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Registrar" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>
@@ -120,7 +120,7 @@
             <Image url="@../../../Downloads/calendar.png" />
          </image>
       </ImageView>
-      <Button layoutX="390.0" layoutY="549.0" mnemonicParsing="false" onAction="#generarCita" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Generar Cita" textFill="WHITE">
+      <Button fx:id="generarCitabuttonRegistro" layoutX="390.0" layoutY="549.0" mnemonicParsing="false" onAction="#generarCita" prefHeight="27.0" prefWidth="144.0" style="-fx-background-color: #8879D5; -fx-background-radius: 10;" text="Generar Cita" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="13.0" />
          </font>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="467.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerGenerarCitaUsuariosNuevos">
+   <children>
+      <AnchorPane layoutX="161.0" layoutY="21.0" prefHeight="372.0" prefWidth="279.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;">
+         <children>
+            <Text layoutX="87.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generar Cita">
+               <font>
+                  <Font name="Segoe UI Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="41.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Servicio">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <Text layoutX="41.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="elegirServicio" layoutX="41.0" layoutY="211.0" minHeight="38.0" prefWidth="190.0" promptText="Buscar Servicio" style="-fx-background-color: #EBEBEB;" />
+            <DatePicker fx:id="fechaCita" layoutX="41.0" layoutY="280.0" minHeight="38.0" minWidth="190.0" style="-fx-background-color: #EBEBEB; -fx-background-radius: 0;" />
+            <Text layoutX="28.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Mascota" />
+            <Text fx:id="nombreCita" layoutX="65.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text layoutX="158.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Mascota" />
+            <Text fx:id="TipoMascotaCita" layoutX="187.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text layoutX="118.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dueno" />
+            <Text fx:id="duenoCita" layoutX="125.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+         </children>
+         <effect>
+            <DropShadow height="33.14" radius="16.07" spread="0.06" width="33.14">
+               <color>
+                  <Color red="0.6100000143051147" green="0.6100000143051147" blue="0.6100000143051147" opacity="0.8347457647323608" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+      <Button fx:id="generarCitabutton" layoutX="250.0" layoutY="407.0" mnemonicParsing="false" onAction="#generarCita" prefHeight="38.0" prefWidth="101.0" style="-fx-background-color: #000;" text="Generar Cita" textFill="WHITE" />
+      <ProgressIndicator fx:id="loadingGenerarCita" layoutX="279.0" layoutY="404.0" prefHeight="44.0" prefWidth="42.0" visible="false" />
+   </children>
+</AnchorPane>

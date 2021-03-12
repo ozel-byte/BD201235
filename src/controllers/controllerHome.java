@@ -112,6 +112,10 @@ public class controllerHome {
     private TableColumn<Cita, String> buttonsCita;
     @FXML
     private Button agendarCita;
+    @FXML
+    private Button registro;
+    @FXML
+    private Button registrarmascotaBoton;
 
 
     ObservableList<Dueno> duenoObservableList = FXCollections.observableArrayList();
@@ -239,6 +243,8 @@ public class controllerHome {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+            Stage stage2 = (Stage) registrarmascotaBoton.getScene().getWindow();
+            stage2.close();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -283,7 +289,7 @@ public class controllerHome {
                             });
                             botonActualizar.setOnAction(event -> {
                                 Mascota mas = getTableView().getItems().get(getIndex());
-                                abrirVentanaActualizar(mas);
+                                abrirVentanaActualizar(mas,botonActualizar);
                             });
                             HBox h = new HBox();
                             h.setSpacing(15);
@@ -370,6 +376,8 @@ public class controllerHome {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+            Stage stage2 = (Stage) registro.getScene().getWindow();
+            stage2.close();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -546,7 +554,7 @@ public class controllerHome {
     }
 
     @FXML
-    public void abrirVentanaActualizar(Mascota mas) {
+    public void abrirVentanaActualizar(Mascota mas,Button botonactualizar) {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ActualizarMascota.fxml"));
@@ -557,6 +565,8 @@ public class controllerHome {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+            Stage stage2 = (Stage) botonactualizar.getScene().getWindow();
+            stage2.close();
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -3,8 +3,13 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import persistencia.Mascota;
 import persistencia.MascotaDAO;
 import persistencia.TipoMascota;
@@ -26,6 +31,8 @@ public class controllerActualizarMascota {
 
     @FXML
     private TextField razaEspecie;
+    @FXML
+    private Button botonactualizarMascota;
 
     controllerHome ch;
     Mascota mascota;
@@ -76,6 +83,21 @@ public class controllerActualizarMascota {
             MascotaDAO mascotaDAO = new MascotaDAO();
             mascota.setNombre(textNombre.getText());
             mascotaDAO.actualizarMascota(mascota);
+            regresarHome();
+        }
+    }
+    public void regresarHome(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+            System.out.println("aqui33");
+            Stage stage2 = (Stage) botonactualizarMascota.getScene().getWindow();
+            stage2.close();
+        }catch (Exception e){
+            System.out.println(e);
         }
     }
 

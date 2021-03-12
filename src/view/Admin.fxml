@@ -19,7 +19,7 @@
 
 <AnchorPane prefHeight="437.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerAdmin">
    <children>
-      <Label layoutX="14.0" layoutY="20.0" text="Crear Cuentas">
+      <Label layoutX="224.0" layoutY="67.0" text="Crear Cuentas">
          <font>
             <Font size="24.0" />
          </font>
@@ -118,7 +118,7 @@
             <Insets left="10.0" right="10.0" />
          </opaqueInsets>
       </Pane>
-      <Button layoutX="563.0" layoutY="69.0" mnemonicParsing="false" onAction="#abrirventanaEliminar" text="Eliminar" />
+      <Button layoutX="563.0" layoutY="69.0" mnemonicParsing="false" onAction="#abrirventanaEliminar" style="-fx-background-color: F74B4B;" text="Eliminar" textFill="WHITE" />
       <Text layoutX="548.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="seleccion:" />
       <Text fx:id="total" layoutX="623.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
       <Pane fx:id="fondoEliminar" prefHeight="437.0" prefWidth="661.0" style="-fx-background-color: #000; -fx-opacity: 0.8;" visible="false" />
@@ -155,5 +155,6 @@
             </DropShadow>
          </effect>
       </Pane>
+      <Button fx:id="cerrarVentanaAdmin" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarVentanaAdmin" style="-fx-background-color: F74B4B;" text="x" textFill="WHITE" />
    </children>
 </AnchorPane>

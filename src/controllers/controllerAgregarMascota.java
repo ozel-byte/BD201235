@@ -3,10 +3,16 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import persistencia.*;
 
 public class controllerAgregarMascota {
@@ -34,6 +40,8 @@ public class controllerAgregarMascota {
 
     @FXML
     private Text mal;
+    @FXML
+    private Button registrarmascotaBoton;
 
     String sexo="";
     TipoMascota tipoMascota;
@@ -87,6 +95,8 @@ public class controllerAgregarMascota {
             mascotaDAO.agregarMascota(comboElegirDueno.getValue(), tpr, nombreMascota.getText());
             h.rellenarListaMascota();
             bien.setVisible(true);
+            regresarHome();
+
 
         } else {
             bien.setVisible(false);
@@ -102,6 +112,21 @@ public class controllerAgregarMascota {
         items = duenoDAO.getDueno();
         comboElegirDueno.setItems(items);
 
+    }
+    @FXML
+    public void regresarHome(){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
+            Parent root = (Parent) loader.load();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            Stage stage2 = (Stage) registrarmascotaBoton.getScene().getWindow();
+            stage2.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }

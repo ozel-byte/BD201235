@@ -52,7 +52,11 @@ public class controllerRegistros
    @FXML
    private AnchorPane cardRegistroDueno;
     @FXML
+    private Button generarCitabuttonRegistro;
+    @FXML
     private Button botonRegistroDueno;
+    @FXML
+    private Button botonRegistrarMascota;
     controllerHome ch;
     controllerRegistros cr;
 
@@ -65,6 +69,7 @@ public class controllerRegistros
     TipoMascota tipoMascota;
    @FXML
    private void initialize(){
+       generarCitabuttonRegistro.setDisable(true);
         cr=this;
        checkM.setSelected(true);
        checkH.setOnAction(event -> {
@@ -127,6 +132,12 @@ public class controllerRegistros
           tipoMascota = new TipoMascota(especieMascota.getText(),sexo,razaMascota.getText());
          // tipoMascotaDAO.crearTipo(tipoMascota);
           mascotaGuardar = new Mascota(duenoGuardar,tipoMascota,nombreMascota.getText());
+          Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+          mensaje.setTitle("REGISTRO DE DUEÑO");
+          mensaje.setHeaderText("Registro Exitoso  Registre su mascota en la sigueinte Tarjeta:)");
+          mensaje.show();
+          botonRegistrarMascota.setDisable(true);
+          generarCitabuttonRegistro.setDisable(false);
       }
    }
    @FXML
@@ -151,6 +162,8 @@ public class controllerRegistros
           controlador.parametros(duenoGuardar,mascotaGuardar,tipoMascota,this);
 
             stage.show();
+            Stage stage2 = (Stage)  generarCitabuttonRegistro.getScene().getWindow();
+            stage2.close();
 
         }catch (Exception e){
             System.out.println(e);

@@ -6,11 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import persistencia.*;
 
@@ -35,6 +39,7 @@ public class controllerGenerarCitaUsuariosNuevos {
     private ProgressIndicator loadingGenerarCita;
     @FXML
     private Button generarCitabutton;
+
 
     Dueno duenoRegistro;
     Mascota mascotaRegistro;
@@ -65,9 +70,20 @@ public class controllerGenerarCitaUsuariosNuevos {
         @Override
         protected void succeeded() {
             super.succeeded();
-            Stage stage = (Stage) generarCitabutton.getScene().getWindow();
-            stage.close();
-            loadingGenerarCita.setVisible(false);
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
+                Parent root = (Parent) loader.load();
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+                Stage stage2 = (Stage) generarCitabutton.getScene().getWindow();
+                stage2.close();
+                loadingGenerarCita.setVisible(false);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
         }
 
         @Override
@@ -116,6 +132,7 @@ public class controllerGenerarCitaUsuariosNuevos {
        t.setDaemon(true);
        t.start();
        loadingGenerarCita.setVisible(true);
+
 
     }
     }

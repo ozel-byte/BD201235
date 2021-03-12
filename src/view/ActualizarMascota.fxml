@@ -6,19 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.controllerActualizarMascota">
    <children>
       <Text layoutX="239.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actualizar Mascota" />
-      <Text layoutX="97.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
-      <TextField fx:id="textNombre" layoutX="97.0" layoutY="98.0" prefHeight="26.0" prefWidth="109.0" />
+      <Text layoutX="140.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
+      <TextField fx:id="textNombre" layoutX="140.0" layoutY="96.0" prefHeight="26.0" prefWidth="109.0" />
       <Text layoutX="346.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sexo" />
       <RadioButton fx:id="checkH" layoutX="346.0" layoutY="89.0" mnemonicParsing="false" text="Hembra" />
       <RadioButton fx:id="checkM" layoutX="351.0" layoutY="115.0" mnemonicParsing="false" text="Macho" />
-      <Text layoutX="97.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especie" />
-      <TextField fx:id="textEspecie" layoutX="97.0" layoutY="174.0" prefHeight="26.0" prefWidth="109.0" />
+      <Text layoutX="140.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especie" />
+      <TextField fx:id="textEspecie" layoutX="140.0" layoutY="172.0" prefHeight="26.0" prefWidth="109.0" />
       <Text layoutX="351.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Raza" />
       <TextField fx:id="razaEspecie" layoutX="351.0" layoutY="174.0" prefHeight="26.0" prefWidth="123.0" />
-      <Button layoutX="239.0" layoutY="249.0" mnemonicParsing="false" onAction="#actualizarDatos" text="Actualizar" />
+      <Button fx:id="botonactualizarMascota" layoutX="217.0" layoutY="250.0" mnemonicParsing="false" onAction="#actualizarDatos" prefHeight="33.0" prefWidth="166.0" style="-fx-background-color: #18BC33;" text="Actualizar" textFill="WHITE" />
    </children>
 </AnchorPane>
